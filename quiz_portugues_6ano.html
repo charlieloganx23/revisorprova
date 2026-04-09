@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz de Língua Portuguesa — 6° Ano</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul: #1a73e8;
+    --azul-escuro: #0d47a1;
+    --verde: #2e7d32;
+    --verde-claro: #43a047;
+    --vermelho: #c62828;
+    --amarelo: #f9a825;
+    --roxo: #6a1b9a;
+    --laranja: #e65100;
+    --cinza-bg: #f0f4ff;
+    --branco: #ffffff;
+    --sombra: 0 4px 20px rgba(0,0,0,0.12);
+    --radius: 18px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cinza-bg);
+    min-height: 100vh;
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(26,115,232,0.08) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(106,27,154,0.08) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(249,168,37,0.05) 0%, transparent 60%);
+  }
+
+  header {
+    background: linear-gradient(135deg, #1a73e8 0%, #6a1b9a 100%);
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -40px; left: -40px; right: -40px;
+    height: 120px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+  }
+  header .emoji-row {
+    font-size: 2.2rem;
+    letter-spacing: 0.3rem;
+    margin-bottom: 0.5rem;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  header h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(1.6rem, 5vw, 2.8rem);
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  header p {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-top: 0.4rem;
+    font-weight: 600;
+  }
+
+  /* PLACAR */
+  .placar-bar {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: -1.4rem auto 0;
+    padding: 0 1rem;
+    max-width: 700px;
+    position: relative;
+    z-index: 10;
+  }
+  .placar-card {
+    background: white;
+    border-radius: 14px;
+    padding: 0.6rem 1.4rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    text-align: center;
+    min-width: 110px;
+  }
+  .placar-card .label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #777;
+  }
+  .placar-card .valor {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.8rem;
+    line-height: 1.1;
+  }
+  .placar-card.pontos .valor { color: var(--azul); }
+  .placar-card.acertos .valor { color: var(--verde-claro); }
+  .placar-card.erros .valor { color: var(--vermelho); }
+  .placar-card.estrelas .valor { color: var(--amarelo); }
+
+  /* PROGRESSO */
+  .progresso-wrap {
+    max-width: 700px;
+    margin: 1.6rem auto 0;
+    padding: 0 1.2rem;
+  }
+  .progresso-texto {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 0.4rem;
+  }
+  .barra-bg {
+    background: #dce3f7;
+    border-radius: 100px;
+    height: 14px;
+    overflow: hidden;
+  }
+  .barra-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #1a73e8, #6a1b9a);
+    border-radius: 100px;
+    transition: width 0.6s ease;
+    width: 0%;
+  }
+
+  /* TEMAS */
+  .temas-lista {
+    max-width: 700px;
+    margin: 1.2rem auto 0;
+    padding: 0 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+  }
+  .tema-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.25rem 0.7rem;
+    border-radius: 100px;
+    background: white;
+    color: var(--azul-escuro);
+    border: 2px solid #c5d5f5;
+    transition: all 0.3s;
+  }
+  .tema-badge.visto { background: var(--azul); color: white; border-color: var(--azul); }
+  .tema-badge.atual { background: var(--amarelo); color: #333; border-color: var(--amarelo); animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.06);} }
+
+  /* QUIZ AREA */
+  .quiz-area {
+    max-width: 700px;
+    margin: 1.4rem auto 2rem;
+    padding: 0 1rem;
+  }
+
+  .cartao {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--sombra);
+    padding: 1.8rem 1.6rem 1.4rem;
+    animation: slideIn 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  @keyframes slideIn {
+    from { opacity:0; transform: translateY(20px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+  .cartao::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #1a73e8, #6a1b9a);
+  }
+
+  .num-pergunta {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--azul);
+    margin-bottom: 0.6rem;
+  }
+  .tema-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.2rem 0.7rem;
+    border-radius: 100px;
+    margin-bottom: 0.8rem;
+  }
+  .pontos-tag {
+    float: right;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--amarelo);
+    background: #fff8e1;
+    border: 2px solid #ffe082;
+    border-radius: 100px;
+    padding: 0.2rem 0.7rem;
+  }
+
+  .enunciado {
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    line-height: 1.55;
+    margin-bottom: 1.2rem;
+  }
+  .enunciado .destaque {
+    background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+    border-left: 4px solid var(--azul);
+    border-radius: 0 8px 8px 0;
+    padding: 0.5rem 0.8rem;
+    margin: 0.6rem 0;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: #444;
+    display: block;
+  }
+
+  .opcoes { display: flex; flex-direction: column; gap: 0.65rem; }
+
+  .opcao-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    border: 2.5px solid #dce3f7;
+    background: #f8f9ff;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #333;
+    text-align: left;
+    transition: all 0.2s;
+  }
+  .opcao-btn:hover:not(:disabled) {
+    border-color: var(--azul);
+    background: #e8f0fe;
+    transform: translateX(4px);
+  }
+  .opcao-btn .letra {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--azul);
+    color: white;
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.95rem;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .opcao-btn.correta {
+    border-color: var(--verde-claro);
+    background: #e8f5e9;
+    animation: acerto 0.4s ease;
+  }
+  .opcao-btn.correta .letra { background: var(--verde-claro); }
+  @keyframes acerto {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+    100% { transform: scale(1); }
+  }
+  .opcao-btn.errada {
+    border-color: var(--vermelho);
+    background: #ffebee;
+  }
+  .opcao-btn.errada .letra { background: var(--vermelho); }
+  .opcao-btn:disabled { cursor: default; }
+
+  /* FEEDBACK */
+  .feedback {
+    margin-top: 1rem;
+    padding: 0.9rem 1rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    display: none;
+    align-items: flex-start;
+    gap: 0.6rem;
+    line-height: 1.5;
+  }
+  .feedback.show { display: flex; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+  .feedback.ok { background: #e8f5e9; color: var(--verde); border: 2px solid #a5d6a7; }
+  .feedback.nok { background: #ffebee; color: var(--vermelho); border: 2px solid #ef9a9a; }
+  .feedback-icon { font-size: 1.4rem; flex-shrink: 0; }
+
+  .btn-proximo {
+    display: block;
+    margin: 1.2rem auto 0;
+    padding: 0.8rem 2.2rem;
+    border-radius: 100px;
+    border: none;
+    background: linear-gradient(135deg, #1a73e8, #6a1b9a);
+    color: white;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(26,115,232,0.35);
+    transition: all 0.2s;
+    display: none;
+  }
+  .btn-proximo:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,115,232,0.45); }
+  .btn-proximo.show { display: block; }
+
+  /* RESULTADO FINAL */
+  .resultado {
+    display: none;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--sombra);
+    padding: 2rem 1.6rem;
+    text-align: center;
+    animation: slideIn 0.5s ease;
+  }
+  .resultado.show { display: block; }
+  .resultado h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+    color: var(--azul-escuro);
+    margin-bottom: 0.5rem;
+  }
+  .resultado .medalha {
+    font-size: 5rem;
+    display: block;
+    margin: 1rem 0;
+    animation: spin 0.8s ease;
+  }
+  @keyframes spin { from{transform:rotateY(0)} to{transform:rotateY(360deg)} }
+  .resultado .placar-final {
+    font-size: 3rem;
+    font-family: 'Fredoka One', cursive;
+    color: var(--azul);
+    margin: 0.5rem 0;
+  }
+  .resultado .mensagem {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #444;
+    margin: 0.5rem 0 1.4rem;
+    line-height: 1.5;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+    margin-bottom: 1.4rem;
+  }
+  .stat-box {
+    background: var(--cinza-bg);
+    border-radius: 12px;
+    padding: 0.7rem;
+  }
+  .stat-box .s-num {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.8rem;
+  }
+  .stat-box .s-label { font-size: 0.72rem; font-weight: 700; color: #666; text-transform: uppercase; }
+  .btn-reiniciar {
+    padding: 0.85rem 2.5rem;
+    border-radius: 100px;
+    border: none;
+    background: linear-gradient(135deg, #1a73e8, #6a1b9a);
+    color: white;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.15rem;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(26,115,232,0.35);
+    transition: all 0.2s;
+  }
+  .btn-reiniciar:hover { transform: translateY(-2px); }
+
+  /* Partículas de confete */
+  .confete { position: fixed; pointer-events: none; z-index: 9999; }
+  .confete span {
+    position: absolute;
+    width: 10px; height: 10px;
+    border-radius: 2px;
+    animation: cair linear forwards;
+  }
+  @keyframes cair {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="emoji-row">📚 ✏️ 🌟 📖 🎯</div>
+  <h1>Quiz de Língua Portuguesa</h1>
+  <p>6° Ano — Linguagem, Língua e Variação Linguística</p>
+</header>
+
+<div class="placar-bar">
+  <div class="placar-card pontos">
+    <div class="label">⭐ Pontos</div>
+    <div class="valor" id="totalPontos">0</div>
+  </div>
+  <div class="placar-card acertos">
+    <div class="label">✅ Acertos</div>
+    <div class="valor" id="totalAcertos">0</div>
+  </div>
+  <div class="placar-card erros">
+    <div class="label">❌ Erros</div>
+    <div class="valor" id="totalErros">0</div>
+  </div>
+  <div class="placar-card estrelas">
+    <div class="label">🏅 Estrelas</div>
+    <div class="valor" id="totalEstrelas">—</div>
+  </div>
+</div>
+
+<div class="progresso-wrap">
+  <div class="progresso-texto">
+    <span id="progressoTexto">Pergunta 1 de 30</span>
+    <span id="pct">0%</span>
+  </div>
+  <div class="barra-bg"><div class="barra-fill" id="barraFill"></div></div>
+</div>
+
+<div class="temas-lista" id="temasLista"></div>
+
+<div class="quiz-area">
+  <div class="cartao" id="cartao">
+    <div class="num-pergunta" id="numPergunta"></div>
+    <span class="pontos-tag" id="pontosTag"></span>
+    <span class="tema-tag" id="temaTag"></span>
+    <div class="enunciado" id="enunciado"></div>
+    <div class="opcoes" id="opcoes"></div>
+    <div class="feedback" id="feedback">
+      <span class="feedback-icon" id="feedbackIcon"></span>
+      <span id="feedbackTexto"></span>
+    </div>
+    <button class="btn-proximo" id="btnProximo" onclick="proximaPergunta()">Próxima →</button>
+  </div>
+  <div class="resultado" id="resultado">
+    <h2>Quiz Concluído! 🎉</h2>
+    <span class="medalha" id="medalha"></span>
+    <div class="placar-final" id="placarFinal"></div>
+    <div class="mensagem" id="msgFinal"></div>
+    <div class="stats-grid">
+      <div class="stat-box"><div class="s-num" style="color:var(--verde-claro)" id="rAcertos">0</div><div class="s-label">Acertos</div></div>
+      <div class="stat-box"><div class="s-num" style="color:var(--vermelho)" id="rErros">0</div><div class="s-label">Erros</div></div>
+      <div class="stat-box"><div class="s-num" style="color:var(--amarelo)" id="rEstrelas">—</div><div class="s-label">Estrelas</div></div>
+    </div>
+    <button class="btn-reiniciar" onclick="reiniciar()">🔄 Jogar Novamente</button>
+  </div>
+</div>
+
+<div class="confete" id="confete"></div>
+
+<script>
+const perguntas = [
+  {
+    tema: "Linguagem Não Verbal",
+    temaColor: "#6a1b9a",
+    pontos: 10,
+    enunciado: "Seu amigo faz um gesto de \"joia\" com o polegar levantado para dizer que está tudo bem. Que tipo de linguagem ele usou?",
+    opcoes: ["Linguagem verbal oral", "Linguagem não verbal (gestual)", "Linguagem escrita", "Linguagem formal"],
+    correta: 1,
+    feedback: "✅ Isso mesmo! Gestos, expressões faciais e movimentos corporais são exemplos de <strong>linguagem não verbal</strong>. Ela complementa ou substitui as palavras!"
+  },
+  {
+    tema: "Texto Multimodal",
+    temaColor: "#e65100",
+    pontos: 15,
+    enunciado: "Um vídeo no YouTube que tem narração, legendas e imagens em movimento é um exemplo de:",
+    opcoes: ["Texto apenas verbal", "Texto apenas visual", "Texto multimodal", "Texto exclusivamente oral"],
+    correta: 2,
+    feedback: "✅ Perfeito! Vídeos com narração (oral), legendas (escrita) e imagens são <strong>textos multimodais</strong> — combinam várias linguagens ao mesmo tempo!"
+  },
+  {
+    tema: "Interlocutores",
+    temaColor: "#2e7d32",
+    pontos: 10,
+    enunciado: "Durante uma aula, a professora explica e os alunos fazem perguntas. Nessa situação, os <strong>interlocutores</strong> são:",
+    opcoes: ["Apenas a professora", "Apenas os alunos", "A professora e os alunos", "Somente quem fala, não quem ouve"],
+    correta: 2,
+    feedback: "✅ Muito bem! Os <strong>interlocutores</strong> são todos que participam da comunicação — tanto quem fala quanto quem ouve e responde. A comunicação é uma via de mão dupla!"
+  },
+  {
+    tema: "Variação Regional",
+    temaColor: "#1565c0",
+    pontos: 15,
+    enunciado: "Observe as palavras: <em>\"aipim\"</em> (Norte), <em>\"macaxeira\"</em> (Nordeste) e <em>\"mandioca\"</em> (Sul/Sudeste). Todas se referem ao mesmo alimento. Isso mostra:",
+    opcoes: ["Que duas regiões estão erradas", "Variação regional — cada região tem suas palavras", "Que existe apenas uma palavra correta", "Um erro nos dicionários"],
+    correta: 1,
+    feedback: "✅ Correto! A <strong>variação regional</strong> faz com que a mesma coisa tenha nomes diferentes em cada região do Brasil. Nenhuma forma está errada — todas fazem parte da nossa riqueza linguística!"
+  },
+  {
+    tema: "Variação Histórica",
+    temaColor: "#4a148c",
+    pontos: 15,
+    enunciado: "Antigamente as pessoas usavam a palavra <em>\"automóvel\"</em>. Hoje quase todo mundo fala <em>\"carro\"</em>. Isso exemplifica:",
+    opcoes: ["Variação regional", "Variação histórica", "Preconceito linguístico", "Norma padrão"],
+    correta: 1,
+    feedback: "✅ Perfeito! A <strong>variação histórica</strong> mostra mudanças na língua ao longo do tempo. Palavras podem sair de moda, ganhar novos significados ou desaparecer completamente!"
+  },
+  {
+    tema: "Variação Social",
+    temaColor: "#bf360c",
+    pontos: 15,
+    enunciado: "Um advogado usa termos como <em>\"réu\"</em>, <em>\"jurisprudência\"</em> e <em>\"habeas corpus\"</em> no trabalho. Esse vocabulário específico é exemplo de:",
+    opcoes: ["Variação regional", "Variação situacional", "Variação social (linguagem profissional)", "Preconceito linguístico"],
+    correta: 2,
+    feedback: "✅ Muito bem! A <strong>variação social</strong> inclui o vocabulário técnico de cada profissão. Médicos, advogados, engenheiros — cada grupo tem seus termos específicos!"
+  },
+  {
+    tema: "Variação Situacional",
+    temaColor: "#006064",
+    pontos: 15,
+    enunciado: "Pedro vai pedir um favor. Para o irmão, ele diz: <em>\"Me empresta 10 reais?\"</em>. Para o diretor da escola: <em>\"Senhor, poderia me emprestar 10 reais, por favor?\"</em>. Pedro está usando:",
+    opcoes: ["Variação histórica", "Variação regional", "Variação situacional", "Erro de português"],
+    correta: 2,
+    feedback: "✅ Ótimo! A <strong>variação situacional</strong> é ajustar a linguagem conforme o contexto e com quem falamos. Falar diferente com amigos e autoridades é adequado e inteligente!"
+  },
+  {
+    tema: "Norma Padrão",
+    temaColor: "#827717",
+    pontos: 15,
+    enunciado: "Em qual situação é MAIS importante usar a norma padrão?",
+    opcoes: [
+      "Conversando com amigos no intervalo",
+      "Jogando videogame online",
+      "Escrevendo uma redação de vestibular",
+      "Mandando mensagem para a família"
+    ],
+    correta: 2,
+    feedback: "✅ Correto! A <strong>norma padrão</strong> é exigida em contextos formais como provas, redações, entrevistas de emprego e documentos oficiais. Em conversas informais, podemos usar linguagem mais relaxada!"
+  },
+  {
+    tema: "Diversidade Linguística",
+    temaColor: "#00695c",
+    pontos: 15,
+    enunciado: "No Brasil, além do português, são faladas mais de 200 línguas indígenas. Preservar essas línguas é importante porque:",
+    opcoes: [
+      "Todo mundo deveria falar só português",
+      "As línguas indígenas são erradas",
+      "Cada língua representa cultura, história e identidade de um povo",
+      "Línguas indígenas atrapalham a comunicação"
+    ],
+    correta: 2,
+    feedback: "✅ Excelente! A <strong>diversidade linguística</strong> é uma riqueza cultural! Cada língua carrega conhecimentos, histórias e visões de mundo únicas. Preservá-las é preservar nossa história e identidade!"
+  },
+  {
+    tema: "Linguagem Verbal",
+    temaColor: "#1a73e8",
+    pontos: 10,
+    enunciado: "Um podcast de notícias usa qual tipo de linguagem verbal?",
+    opcoes: ["Linguagem verbal escrita", "Linguagem verbal oral", "Linguagem não verbal", "Linguagem gestual"],
+    correta: 1,
+    feedback: "✅ Muito bem! Podcasts usam a <strong>linguagem verbal oral</strong> — são palavras faladas, transmitidas pelo áudio. Já um blog de notícias usa linguagem verbal escrita!"
+  },
+  {
+    tema: "Língua",
+    temaColor: "#c62828",
+    pontos: 10,
+    enunciado: "A língua portuguesa pertence a:",
+    opcoes: [
+      "Apenas aos professores de português",
+      "Somente a quem mora em Portugal",
+      "A todos que a utilizam para se comunicar",
+      "Apenas a quem fala formalmente"
+    ],
+    correta: 2,
+    feedback: "✅ Perfeito! A <strong>língua</strong> é um patrimônio coletivo — pertence a todos que a falam! Cada falante contribui para sua evolução e riqueza, independentemente de como fala!"
+  },
+  {
+    tema: "Preconceito Linguístico",
+    temaColor: "#880e4f",
+    pontos: 20,
+    enunciado: "Carlos, que é do interior do Nordeste, fala de um jeito diferente dos colegas de São Paulo. Um colega ri dele e diz: <em>\"Você fala tudo errado!\"</em>. Esse comportamento é:",
+    opcoes: [
+      "Correto, porque só existe um jeito certo de falar",
+      "Preconceito linguístico, pois nenhuma variedade é inferior",
+      "Normal, porque o sotaque nordestino tem erros de gramática",
+      "Adequado, pois Carlos deveria aprender a norma padrão para tudo"
+    ],
+    correta: 1,
+    feedback: "✅ Muito bem! O <strong>preconceito linguístico</strong> é tratar uma forma de falar como errada ou inferior só porque é diferente. Todas as variedades do português são válidas e expressam a riqueza cultural do nosso povo!"
+  },
+  {
+    tema: "Linguagem Verbal",
+    temaColor: "#1a73e8",
+    pontos: 10,
+    enunciado: "Qual destas situações usa apenas linguagem verbal escrita?",
+    opcoes: ["Uma videoconferência", "Um cartaz com desenhos e frases", "Um e-mail", "Um filme com legendas"],
+    correta: 2,
+    feedback: "✅ Correto! Um <strong>e-mail</strong> usa apenas palavras escritas. As outras opções combinam diferentes tipos de linguagem!"
+  },
+  {
+    tema: "Linguagem Não Verbal",
+    temaColor: "#6a1b9a",
+    pontos: 10,
+    enunciado: "Uma pessoa cruza os braços e franze a testa quando ouve algo de que não gosta. Isso é um exemplo de comunicação:",
+    opcoes: ["Verbal oral", "Verbal escrita", "Não verbal (expressão corporal)", "Formal"],
+    correta: 2,
+    feedback: "✅ Excelente! Nossa <strong>linguagem corporal</strong> (postura, expressões faciais, gestos) comunica muito sem usar palavras. É linguagem não verbal poderosa!"
+  },
+  {
+    tema: "Texto Multimodal",
+    temaColor: "#e65100",
+    pontos: 15,
+    enunciado: "Uma história em quadrinhos (HQ) combina balões com texto e desenhos. Por que ela é um texto multimodal?",
+    opcoes: [
+      "Porque tem muitas páginas",
+      "Porque usa imagens E palavras juntas para comunicar",
+      "Porque é colorida",
+      "Porque só crianças leem"
+    ],
+    correta: 1,
+    feedback: "✅ Perfeito! As histórias em quadrinhos são <strong>multimodais</strong> porque combinam linguagem verbal (textos nos balões) e linguagem não verbal (imagens, expressões dos personagens) para contar a história!"
+  },
+  {
+    tema: "Interlocutores",
+    temaColor: "#2e7d32",
+    pontos: 10,
+    enunciado: "Numa chamada de vídeo entre vó e neto, quem são os interlocutores?",
+    opcoes: ["Só a vó", "Só o neto", "A vó e o neto", "O celular"],
+    correta: 2,
+    feedback: "✅ Muito bem! A vó e o neto são os <strong>interlocutores</strong> — as pessoas que estão se comunicando. O celular é apenas o meio de comunicação!"
+  },
+  {
+    tema: "Língua",
+    temaColor: "#c62828",
+    pontos: 10,
+    enunciado: "Qual a diferença entre língua e linguagem?",
+    opcoes: [
+      "Não há diferença, são sinônimos",
+      "Língua é um sistema específico (como português); linguagem é qualquer forma de comunicação",
+      "Língua é só oral, linguagem é só escrita",
+      "Língua é formal, linguagem é informal"
+    ],
+    correta: 1,
+    feedback: "✅ Correto! <strong>Linguagem</strong> é qualquer forma de comunicação (verbal, não verbal, musical, etc.). <strong>Língua</strong> é um sistema específico de sinais e regras, como o português, inglês ou libras!"
+  },
+  {
+    tema: "Diversidade Linguística",
+    temaColor: "#00695c",
+    pontos: 15,
+    enunciado: "Em algumas regiões do Brasil, comunidades falam alemão, italiano ou japonês em casa. Isso mostra que:",
+    opcoes: [
+      "Essas pessoas não são brasileiras",
+      "O Brasil é um país com grande diversidade linguística",
+      "Elas deveriam falar só português",
+      "Isso é proibido por lei"
+    ],
+    correta: 1,
+    feedback: "✅ Excelente! O Brasil tem <strong>grande diversidade linguística</strong> graças aos povos indígenas e imigrantes. Falar outras línguas além do português é um direito e uma riqueza cultural!"
+  },
+  {
+    tema: "Variação Regional",
+    temaColor: "#1565c0",
+    pontos: 15,
+    enunciado: "No Sul do Brasil, as pessoas chamam o café da manhã de <em>\"xícara\"</em> em algumas regiões. Já em outras partes do país é <em>\"café da manhã\"</em>. Qual afirmação está correta?",
+    opcoes: [
+      "Apenas uma forma está certa",
+      "Ambas estão corretas — são variações regionais válidas",
+      "O Sul fala errado",
+      "Isso é erro de português"
+    ],
+    correta: 1,
+    feedback: "✅ Perfeito! Todas as <strong>variações regionais</strong> são válidas e corretas! Elas mostram a riqueza e diversidade da língua portuguesa no Brasil!"
+  },
+  {
+    tema: "Variação Histórica",
+    temaColor: "#4a148c",
+    pontos: 15,
+    enunciado: "A palavra <em>\"você\"</em> que usamos hoje veio de <em>\"vossa mercê\"</em>, que depois virou <em>\"vosmecê\"</em> e depois <em>\"você\"</em>. Esse processo mostra:",
+    opcoes: [
+      "Que as pessoas falam cada vez pior",
+      "A variação histórica — a língua muda com o tempo",
+      "Um erro que se espalhou",
+      "Que a língua parou de evoluir"
+    ],
+    correta: 1,
+    feedback: "✅ Muito bem! A <strong>variação histórica</strong> é natural e contínua. As línguas estão sempre mudando — palavras se transformam, surgem novos termos e outros caem em desuso!"
+  },
+  {
+    tema: "Variação Social",
+    temaColor: "#bf360c",
+    pontos: 15,
+    enunciado: "Gamers usam termos como <em>\"GG\"</em>, <em>\"lag\"</em>, <em>\"nerf\"</em>. Já surfistas falam <em>\"dropar\"</em>, <em>\"tubo\"</em>, <em>\"manobra\"</em>. Isso exemplifica:",
+    opcoes: [
+      "Variação regional",
+      "Variação social — cada grupo tem seu vocabulário",
+      "Preconceito linguístico",
+      "Norma padrão"
+    ],
+    correta: 1,
+    feedback: "✅ Ótimo! A <strong>variação social</strong> faz com que grupos com interesses comuns (gamers, surfistas, skatistas) desenvolvam vocabulário próprio para se comunicar entre si!"
+  },
+  {
+    tema: "Variação Situacional",
+    temaColor: "#006064",
+    pontos: 15,
+    enunciado: "Maria está fazendo uma apresentação de trabalho na escola. Qual linguagem ela deve usar?",
+    opcoes: [
+      "Igual à que usa no WhatsApp com os amigos",
+      "Mais formal, com vocabulário adequado ao contexto escolar",
+      "Cheia de gírias para parecer legal",
+      "Não importa, qualquer jeito serve"
+    ],
+    correta: 1,
+    feedback: "✅ Correto! A <strong>variação situacional</strong> pede que usemos linguagem mais formal em apresentações escolares. Escolher a linguagem adequada a cada situação é uma habilidade importante!"
+  },
+  {
+    tema: "Norma Padrão",
+    temaColor: "#827717",
+    pontos: 15,
+    enunciado: "Por que aprendemos a norma padrão na escola?",
+    opcoes: [
+      "Porque as outras formas de falar estão erradas",
+      "Para substituir nossa forma natural de falar",
+      "Para termos mais uma ferramenta de comunicação em situações formais",
+      "Porque a norma padrão é superior"
+    ],
+    correta: 2,
+    feedback: "✅ Muito bem! Aprendemos a <strong>norma padrão</strong> para ter mais opções de comunicação. É como aprender uma nova habilidade — não apaga o que já sabemos, só amplia nossas possibilidades!"
+  },
+  {
+    tema: "Linguagem do Dia a Dia",
+    temaColor: "#1b5e20",
+    pontos: 10,
+    enunciado: "Júlia escreveu: <em>\"Tipo assim, a gente foi lá e fez um negócio massa!\"</em>. Essa linguagem é adequada para:",
+    opcoes: [
+      "Uma redação de vestibular",
+      "Um documento oficial",
+      "Uma conversa informal com amigos",
+      "Um relatório de trabalho"
+    ],
+    correta: 2,
+    feedback: "✅ Correto! A <strong>linguagem informal do dia a dia</strong> é perfeita para conversas com amigos. Para textos formais, usamos a norma padrão com vocabulário mais preciso!"
+  },
+  {
+    tema: "Preconceito Linguístico",
+    temaColor: "#880e4f",
+    pontos: 20,
+    enunciado: "Uma professora disse: <em>\"Todas as formas de falar português são válidas, mas precisamos aprender quando usar cada uma.\"</em> Essa atitude representa:",
+    opcoes: [
+      "Erro pedagógico — só a norma padrão deveria ser ensinada",
+      "Combate ao preconceito linguístico e educação sobre variação",
+      "Desrespeito às regras da gramática",
+      "Confusão sobre a língua portuguesa"
+    ],
+    correta: 1,
+    feedback: "✅ Excelente! Essa professora está combatendo o <strong>preconceito linguístico</strong>! Ela reconhece a validade de todas as formas de falar E ensina sobre adequação ao contexto. Perfeito!"
+  },
+  {
+    tema: "Texto Multimodal",
+    temaColor: "#e65100",
+    pontos: 15,
+    enunciado: "Um infográfico combina gráficos, imagens e textos explicativos. Por que ele é eficiente para comunicar informações?",
+    opcoes: [
+      "Porque usa apenas imagens",
+      "Porque combina diferentes linguagens tornando a informação mais clara",
+      "Porque tem cores bonitas",
+      "Porque ocupa menos espaço"
+    ],
+    correta: 1,
+    feedback: "✅ Perfeito! Infográficos são <strong>textos multimodais</strong> eficientes porque combinam imagens, gráficos e textos. Cada linguagem complementa as outras, facilitando a compreensão!"
+  },
+  {
+    tema: "Variação Regional",
+    temaColor: "#1565c0",
+    pontos: 15,
+    enunciado: "O sotaque paulista é diferente do sotaque carioca, que é diferente do sotaque gaúcho. Essas diferenças são:",
+    opcoes: [
+      "Erros de pronúncia que deveriam ser corrigidos",
+      "Variações regionais naturais e válidas",
+      "Problemas na educação de cada região",
+      "Desvios da norma padrão"
+    ],
+    correta: 1,
+    feedback: "✅ Muito bem! Os sotaques são <strong>variações regionais</strong> naturais e fazem parte da identidade cultural de cada região. Nenhum sotaque é melhor ou mais correto que outro!"
+  },
+  {
+    tema: "Variação Histórica",
+    temaColor: "#4a148c",
+    pontos: 15,
+    enunciado: "Nos anos 1990, ninguém usava palavras como <em>\"selfie\"</em>, <em>\"hashtag\"</em> ou <em>\"stories\"</em>. Hoje são comuns. Isso mostra que:",
+    opcoes: [
+      "A língua portuguesa está sendo destruída",
+      "A língua evolui e cria palavras para novas realidades (variação histórica)",
+      "As pessoas estão falando errado",
+      "Devíamos voltar ao português antigo"
+    ],
+    correta: 1,
+    feedback: "✅ Excelente! A <strong>variação histórica</strong> acontece quando surgem novas tecnologias e realidades sociais. A língua se adapta e cria (ou empresta) novas palavras para nomear essas novidades!"
+  },
+  {
+    tema: "Variação Social",
+    temaColor: "#bf360c",
+    pontos: 15,
+    enunciado: "Qual frase exemplifica MELHOR a variação social etária (por idade)?",
+    opcoes: [
+      "\"Que dahora, mano!\" (jovens) vs \"Que legal, rapaz!\" (mais velhos)",
+      "\"Mandioca\" vs \"Aipim\" (regional)",
+      "\"Oi\" vs \"Olá\" (situacional)",
+      "\"Carro\" vs \"Automóvel\" (histórica)"
+    ],
+    correta: 0,
+    feedback: "✅ Perfeito! A <strong>variação social etária</strong> mostra que pessoas de diferentes idades usam palavras e expressões diferentes. Cada geração tem suas gírias e jeitos de falar!"
+  },
+  {
+    tema: "Preconceito Linguístico",
+    temaColor: "#880e4f",
+    pontos: 20,
+    enunciado: "Qual frase representa preconceito linguístico?",
+    opcoes: [
+      "\"Na redação, use a norma padrão\"",
+      "\"Ele fala errado porque é do interior\"",
+      "\"Cada região tem seu jeito de falar\"",
+      "\"Podemos usar gírias com amigos\""
+    ],
+    correta: 1,
+    feedback: "✅ Correto! Dizer que alguém \"fala errado\" por causa de sua origem é <strong>preconceito linguístico</strong>. Todas as variedades regionais são legítimas e não há \"certo\" ou \"errado\" nisso!"
+  }
+];
+
+const temas = [...new Set(perguntas.map(p => p.tema))];
+let atual = 0, pontos = 0, acertos = 0, erros = 0, respondeu = false;
+
+function init() {
+  // Renderiza badges de temas
+  const tl = document.getElementById('temasLista');
+  tl.innerHTML = temas.map((t, i) => `<span class="tema-badge" id="badge-${i}">${t}</span>`).join('');
+  renderPergunta();
+}
+
+function atualizarBadges() {
+  temas.forEach((t, i) => {
+    const badge = document.getElementById(`badge-${i}`);
+    badge.className = 'tema-badge';
+    const pergAtual = perguntas[atual];
+    if (pergAtual && pergAtual.tema === t) badge.classList.add('atual');
+    else if (perguntas.slice(0, atual).some(p => p.tema === t)) badge.classList.add('visto');
+  });
+}
+
+function renderPergunta() {
+  if (atual >= perguntas.length) { mostrarResultado(); return; }
+  respondeu = false;
+  const p = perguntas[atual];
+  const letras = ['A', 'B', 'C', 'D'];
+
+  document.getElementById('numPergunta').textContent = `Pergunta ${atual + 1} de ${perguntas.length}`;
+  document.getElementById('pontosTag').textContent = `⭐ ${p.pontos} pts`;
+  const tt = document.getElementById('temaTag');
+  tt.textContent = p.tema;
+  tt.style.background = p.temaColor + '20';
+  tt.style.color = p.temaColor;
+  tt.style.border = `2px solid ${p.temaColor}40`;
+  document.getElementById('enunciado').innerHTML = p.enunciado;
+
+  const opcDiv = document.getElementById('opcoes');
+  opcDiv.innerHTML = p.opcoes.map((op, i) =>
+    `<button class="opcao-btn" onclick="responder(${i})">
+      <span class="letra">${letras[i]}</span>
+      <span>${op}</span>
+    </button>`
+  ).join('');
+
+  document.getElementById('feedback').className = 'feedback';
+  document.getElementById('btnProximo').className = 'btn-proximo';
+
+  // Barra de progresso
+  const pct = Math.round((atual / perguntas.length) * 100);
+  document.getElementById('barraFill').style.width = pct + '%';
+  document.getElementById('progressoTexto').textContent = `Pergunta ${atual + 1} de ${perguntas.length}`;
+  document.getElementById('pct').textContent = pct + '%';
+
+  atualizarBadges();
+}
+
+function responder(idx) {
+  if (respondeu) return;
+  respondeu = true;
+  const p = perguntas[atual];
+  const bots = document.querySelectorAll('.opcao-btn');
+  bots.forEach(b => b.disabled = true);
+  bots[idx].classList.add(idx === p.correta ? 'correta' : 'errada');
+  if (idx !== p.correta) bots[p.correta].classList.add('correta');
+
+  const fb = document.getElementById('feedback');
+  const fi = document.getElementById('feedbackIcon');
+  const ft = document.getElementById('feedbackTexto');
+
+  if (idx === p.correta) {
+    pontos += p.pontos; acertos++;
+    fb.className = 'feedback show ok';
+    fi.textContent = '🎉';
+    ft.innerHTML = p.feedback;
+    confete();
+  } else {
+    erros++;
+    fb.className = 'feedback show nok';
+    fi.textContent = '💡';
+    ft.innerHTML = `❌ Ops! A resposta correta é a <strong>${['A','B','C','D'][p.correta]}</strong>. <br>${p.feedback.replace('✅','📖')}`;
+  }
+
+  document.getElementById('totalPontos').textContent = pontos;
+  document.getElementById('totalAcertos').textContent = acertos;
+  document.getElementById('totalErros').textContent = erros;
+  document.getElementById('totalEstrelas').textContent = getEstrelas(pontos);
+  document.getElementById('btnProximo').className = 'btn-proximo show';
+}
+
+function getEstrelas(pts) {
+  const max = perguntas.reduce((s, p) => s + p.pontos, 0);
+  const pct = pts / max;
+  if (pct >= 0.9) return '⭐⭐⭐';
+  if (pct >= 0.6) return '⭐⭐';
+  if (pct >= 0.3) return '⭐';
+  return '0';
+}
+
+function getMedalha(pts) {
+  const max = perguntas.reduce((s, p) => s + p.pontos, 0);
+  const pct = pts / max;
+  if (pct >= 0.9) return '🏆';
+  if (pct >= 0.7) return '🥇';
+  if (pct >= 0.5) return '🥈';
+  if (pct >= 0.3) return '🥉';
+  return '📚';
+}
+
+function getMensagem(pts) {
+  const max = perguntas.reduce((s, p) => s + p.pontos, 0);
+  const pct = pts / max;
+  if (pct >= 0.9) return 'Incrível! Você é um(a) expert em Língua Portuguesa! Continue assim! 🌟';
+  if (pct >= 0.7) return 'Muito bem! Você domina os conceitos principais. Revise os que errou e ficará perfeito! 💪';
+  if (pct >= 0.5) return 'Bom trabalho! Você está no caminho certo. Revise os temas com mais atenção! 📖';
+  if (pct >= 0.3) return 'Você está aprendendo! Revise os conteúdos e tente novamente. Você consegue! 🎯';
+  return 'Não desanime! Releia o material e tente de novo. Estudar é praticar! 📚';
+}
+
+function proximaPergunta() {
+  atual++;
+  if (atual >= perguntas.length) { mostrarResultado(); return; }
+  document.getElementById('cartao').style.animation = 'none';
+  setTimeout(() => {
+    document.getElementById('cartao').style.animation = 'slideIn 0.4s ease';
+    renderPergunta();
+  }, 50);
+}
+
+function mostrarResultado() {
+  document.getElementById('cartao').style.display = 'none';
+  const r = document.getElementById('resultado');
+  r.className = 'resultado show';
+  document.getElementById('medalha').textContent = getMedalha(pontos);
+  const max = perguntas.reduce((s, p) => s + p.pontos, 0);
+  document.getElementById('placarFinal').textContent = `${pontos} / ${max} pontos`;
+  document.getElementById('msgFinal').innerHTML = getMensagem(pontos);
+  document.getElementById('rAcertos').textContent = acertos;
+  document.getElementById('rErros').textContent = erros;
+  document.getElementById('rEstrelas').textContent = getEstrelas(pontos);
+  const max2 = perguntas.reduce((s, p) => s + p.pontos, 0);
+  if (pontos / max2 >= 0.7) confete(80);
+
+  // Barra 100%
+  document.getElementById('barraFill').style.width = '100%';
+  document.getElementById('progressoTexto').textContent = 'Quiz concluído!';
+  document.getElementById('pct').textContent = '100%';
+}
+
+function reiniciar() {
+  atual = 0; pontos = 0; acertos = 0; erros = 0;
+  document.getElementById('totalPontos').textContent = 0;
+  document.getElementById('totalAcertos').textContent = 0;
+  document.getElementById('totalErros').textContent = 0;
+  document.getElementById('totalEstrelas').textContent = '—';
+  document.getElementById('cartao').style.display = '';
+  document.getElementById('resultado').className = 'resultado';
+  renderPergunta();
+}
+
+function confete(qtd = 30) {
+  const el = document.getElementById('confete');
+  el.innerHTML = '';
+  const cores = ['#1a73e8','#6a1b9a','#f9a825','#43a047','#e65100','#c62828','#fff'];
+  for (let i = 0; i < qtd; i++) {
+    const s = document.createElement('span');
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.top = '-20px';
+    s.style.background = cores[Math.floor(Math.random() * cores.length)];
+    s.style.width = (8 + Math.random() * 8) + 'px';
+    s.style.height = (8 + Math.random() * 8) + 'px';
+    s.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    s.style.animationDuration = (1.5 + Math.random() * 2) + 's';
+    s.style.animationDelay = Math.random() * 0.5 + 's';
+    el.appendChild(s);
+  }
+  setTimeout(() => { el.innerHTML = ''; }, 3500);
+}
+
+init();
+</script>
+</body>
+</html>
