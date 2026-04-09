@@ -1,10 +1,14 @@
-# Quiz de Língua Portuguesa - 6° Ano 📚
+# Quiz Educacional - 6° Ano 📚
 
-Quiz interativo e didático para revisão de prova de Língua Portuguesa, desenvolvido para estudantes do 6° ano do Ensino Fundamental.
+Quizzes interativos e didáticos para revisão de prova, desenvolvidos para estudantes do 6° ano do Ensino Fundamental.
 
 ## 📖 Sobre o Projeto
 
-Este quiz aborda os principais temas de Língua Portuguesa do 6° ano:
+Este projeto contém dois quizzes completos:
+
+### 1. Quiz de Língua Portuguesa 🇧🇷
+
+Aborda os principais temas de Língua Portuguesa do 6° ano:
 
 - **Linguagem Verbal** (oral e escrita)
 - **Linguagem Não Verbal**
@@ -20,11 +24,26 @@ Este quiz aborda os principais temas de Língua Portuguesa do 6° ano:
 - **Linguagem do Dia a Dia**
 - **Preconceito Linguístico**
 
+### 2. Quiz de Inglês (Greetings) 🇬🇧
+
+Foca em cumprimentos e expressões básicas do inglês:
+
+- **Cumprimentos Básicos** (Hello, Hi, Hey)
+- **Cumprimentos por Período** (Good morning, afternoon, evening, night)
+- **Cumprimentos Formais vs Informais**
+- **Como Está Você?** (How are you?)
+- **Respostas a Cumprimentos**
+- **Apresentações** (What's your name?, Nice to meet you)
+- **Despedidas** (Goodbye, See you later, Take care)
+- **Expressões de Cortesia** (Please, Thank you, Sorry)
+- **Cumprimentos em Contexto**
+
 ## ✨ Características
 
-- ✅ **30 perguntas** completas e didáticas
+- ✅ **30 perguntas** em cada quiz
 - 🎯 **Sistema de pontuação** (10 a 20 pontos por pergunta)
 - ⭐ **Sistema de estrelas** baseado no desempenho
+- 🔄 **Navegação entre quizzes** com botões integrados
 - 🎨 **Interface colorida e atrativa** para estudantes
 - 📊 **Barra de progresso** visual
 - 🎉 **Feedback educativo** instantâneo
@@ -60,19 +79,22 @@ netlify deploy --prod
 
 ```
 revisor/
-├── quiz_portugues_6ano.html   # Arquivo principal do quiz
+├── quiz_portugues_6ano.html   # Quiz de Língua Portuguesa
+├── quiz_ingles_6ano.html       # Quiz de Inglês (Greetings)
 ├── netlify.toml                # Configuração do Netlify
+├── .gitignore                  # Arquivos ignorados pelo Git
 └── README.md                   # Este arquivo
 ```
 
 ## 🎮 Como Usar
 
-1. Abra o arquivo `quiz_portugues_6ano.html` no navegador
-2. Leia cada pergunta com atenção
-3. Clique na alternativa que você considera correta
-4. Receba feedback imediato sobre sua resposta
-5. Acumule pontos e estrelas
-6. Revise os temas que você errou
+1. Abra o arquivo `quiz_portugues_6ano.html` ou `quiz_ingles_6ano.html` no navegador
+2. Use os botões de navegação para alternar entre os quizzes
+3. Leia cada pergunta com atenção
+4. Clique na alternativa que você considera correta
+5. Receba feedback imediato sobre sua resposta
+6. Acumule pontos e estrelas
+7. Revise os temas que você errou
 
 ## 🎨 Tecnologias Utilizadas
 
@@ -95,10 +117,18 @@ revisor/
 
 ## 🎓 Público-Alvo
 
-Estudantes do 6° ano do Ensino Fundamental que estão se preparando para provas de Língua Portuguesa sobre:
+Estudantes do 6° ano do Ensino Fundamental que estão se preparando para provas de:
+
+**Língua Portuguesa:**
 - Comunicação e linguagem
 - Variações linguísticas
 - Respeito à diversidade linguística
+
+**Inglês:**
+- Cumprimentos e saudações
+- Apresentações pessoais
+- Expressões de cortesia
+- Comunicação básica em inglês
 
 ## 📝 Licença
 
