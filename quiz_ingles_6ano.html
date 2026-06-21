@@ -455,9 +455,9 @@
 <body>
 
 <header>
-  <div class="emoji-row">🇬🇧 👋 🌍 💬 ✨</div>
-  <h1>English Quiz - Greetings</h1>
-  <p>6° Ano — Cumprimentos em Inglês</p>
+  <div class="emoji-row">🇬🇧 🎨 🚗 ✈️ 🌈</div>
+  <h1>English Quiz</h1>
+  <p>6° Ano — Colors &amp; Means of Transport</p>
 </header>
 
 <div class="nav-quizzes">
@@ -486,7 +486,7 @@
 
 <div class="progresso-wrap">
   <div class="progresso-texto">
-    <span id="progressoTexto">Question 1 of 30</span>
+    <span id="progressoTexto">Question 1 of 20</span>
     <span id="pct">0%</span>
   </div>
   <div class="barra-bg"><div class="barra-fill" id="barraFill"></div></div>
@@ -525,360 +525,193 @@
 
 <script>
 const perguntas = [
+
+  // =============================================
+  // 1. COLORS
+  // =============================================
   {
-    tema: "Cumprimentos Básicos",
+    tema: "Colors",
+    temaColor: "#9c27b0",
+    pontos: 10,
+    enunciado: "The banana (a banana) is ___. Which color completes the sentence correctly?",
+    opcoes: ["Blue", "Red", "Yellow", "Purple"],
+    correta: 2,
+    feedback: "✅ Correct! Bananas are <strong>YELLOW</strong>! In Portuguese, yellow = <strong>amarelo</strong>. Other yellow things: the sun, lemons and school buses!"
+  },
+  {
+    tema: "Colors",
+    temaColor: "#9c27b0",
+    pontos: 10,
+    enunciado: "On a sunny day, the sky is ___. Which color is it?",
+    opcoes: ["Green", "Blue", "Orange", "Red"],
+    correta: 1,
+    feedback: "✅ Correct! The sky is <strong>BLUE</strong>! In Portuguese, blue = <strong>azul</strong>. Other blue things: the ocean, blueberries and blue jeans!"
+  },
+  {
+    tema: "Colors",
+    temaColor: "#9c27b0",
+    pontos: 10,
+    enunciado: "What does the word <strong>\"PURPLE\"</strong> mean in Portuguese?",
+    opcoes: ["Verde", "Laranja", "Roxo", "Vermelho"],
+    correta: 2,
+    feedback: "✅ Correct! <strong>Purple</strong> = <strong>roxo</strong> in Portuguese! It is the color of grapes (uvas) and eggplants (berinjelas)!"
+  },
+  {
+    tema: "Colors",
+    temaColor: "#9c27b0",
+    pontos: 10,
+    enunciado: "What color is the fruit called <strong>\"orange\"</strong> (laranja)?",
+    opcoes: ["Yellow", "Green", "Orange", "Red"],
+    correta: 2,
+    feedback: "✅ Correct! An orange fruit is <strong>ORANGE</strong> in color! In English, the fruit and the color have the same name: <em>orange</em> = both the fruit and the color <strong>laranja</strong>!"
+  },
+  {
+    tema: "Colors",
+    temaColor: "#9c27b0",
+    pontos: 10,
+    enunciado: "Grass (grama) and tree leaves (folhas de árvore) are usually which color?",
+    opcoes: ["Red", "Blue", "Purple", "Green"],
+    correta: 3,
+    feedback: "✅ Correct! Grass and leaves are <strong>GREEN</strong>! In Portuguese, green = <strong>verde</strong>. Other green things: broccoli, frogs and traffic lights (go signal)!"
+  },
+  {
+    tema: "Colors",
+    temaColor: "#9c27b0",
+    pontos: 10,
+    enunciado: "A tomato (tomate) is which color?",
+    opcoes: ["Blue", "Purple", "Red", "Orange"],
+    correta: 2,
+    feedback: "✅ Correct! Tomatoes are <strong>RED</strong>! In Portuguese, red = <strong>vermelho</strong>. Other red things: strawberries (morangos), fire trucks and stop signs!"
+  },
+  {
+    tema: "Colors",
+    temaColor: "#9c27b0",
+    pontos: 10,
+    enunciado: "How do you say <strong>\"azul\"</strong> in English?",
+    opcoes: ["Green", "Yellow", "Purple", "Blue"],
+    correta: 3,
+    feedback: "✅ Correct! <strong>Azul</strong> in English is <strong>BLUE</strong>! Remember: the sky and the ocean are blue!"
+  },
+  {
+    tema: "Colors",
+    temaColor: "#9c27b0",
+    pontos: 10,
+    enunciado: "How do you say <strong>\"laranja\"</strong> (the color) in English?",
+    opcoes: ["Orange", "Yellow", "Red", "Green"],
+    correta: 0,
+    feedback: "✅ Correct! The color <em>laranja</em> in English is <strong>ORANGE</strong>! Fun fact: both the fruit and the color have the same name in English!"
+  },
+  {
+    tema: "Colors",
+    temaColor: "#9c27b0",
+    pontos: 15,
+    enunciado: "Which of these words is <strong>NOT</strong> a color in English?",
+    opcoes: ["Purple", "Yellow", "Banana", "Green"],
+    correta: 2,
+    feedback: "✅ Correct! <strong>Banana</strong> is a fruit, not a color! The colors we studied are: <strong>yellow, blue, purple, orange, green</strong> and <strong>red</strong>. A banana is <em>yellow</em> in color!"
+  },
+  {
+    tema: "Colors",
+    temaColor: "#9c27b0",
+    pontos: 15,
+    enunciado: "In the sentence <em>\"She has blue eyes and red hair\"</em>, how many colors appear?",
+    opcoes: ["One", "Two", "Three", "Zero"],
+    correta: 1,
+    feedback: "✅ Correct! There are <strong>TWO</strong> colors: <strong>blue</strong> (azul) and <strong>red</strong> (vermelho)! Translation: <em>Ela tem olhos azuis e cabelo vermelho.</em>"
+  },
+
+  // =============================================
+  // 2. MEANS OF TRANSPORT
+  // =============================================
+  {
+    tema: "Means of Transport",
     temaColor: "#e65100",
     pontos: 10,
-    enunciado: "Qual é o cumprimento mais comum usado em inglês a qualquer hora do dia?",
-    opcoes: ["Good night", "Hello", "Goodbye", "Good afternoon"],
+    enunciado: "How do you say <strong>\"carro\"</strong> in English?",
+    opcoes: ["Bus", "Car", "Truck", "Bike"],
     correta: 1,
-    feedback: "✅ Correto! <strong>Hello</strong> é o cumprimento universal em inglês, usado a qualquer momento do dia e em situações formais ou informais."
+    feedback: "✅ Correct! <strong>Carro</strong> in English is <strong>CAR</strong>! Example: <em>\"My dad has a red car.\"</em> = Meu pai tem um carro vermelho."
   },
   {
-    tema: "Cumprimentos por Período",
-    temaColor: "#43a047",
+    tema: "Means of Transport",
+    temaColor: "#e65100",
     pontos: 10,
-    enunciado: "Qual cumprimento você deve usar quando encontra alguém de manhã?",
-    opcoes: ["Good evening", "Good morning", "Good night", "Good afternoon"],
-    correta: 1,
-    feedback: "✅ Muito bem! <strong>Good morning</strong> é usado do amanhecer até o meio-dia (aproximadamente até 12h)."
-  },
-  {
-    tema: "Cumprimentos por Período",
-    temaColor: "#43a047",
-    pontos: 10,
-    enunciado: "Se são 3 horas da tarde e você encontra um professor, o que você diz?",
-    opcoes: ["Good morning", "Good afternoon", "Good evening", "Good night"],
-    correta: 1,
-    feedback: "✅ Perfeito! <strong>Good afternoon</strong> é usado do meio-dia até aproximadamente 18h (6 da tarde)."
-  },
-  {
-    tema: "Cumprimentos por Período",
-    temaColor: "#43a047",
-    pontos: 10,
-    enunciado: "Qual é a diferença entre <em>\"Good evening\"</em> e <em>\"Good night\"</em>?",
-    opcoes: [
-      "São sinônimos, significam a mesma coisa",
-      "Good evening é cumprimento; Good night é despedida",
-      "Good night é cumprimento; Good evening é despedida",
-      "Ambos são apenas despedidas"
-    ],
-    correta: 1,
-    feedback: "✅ Excelente! <strong>Good evening</strong> é usado para cumprimentar alguém à noite (após 18h). <strong>Good night</strong> é usado apenas para se despedir antes de dormir!"
-  },
-  {
-    tema: "Cumprimentos Informais",
-    temaColor: "#1a73e8",
-    pontos: 10,
-    enunciado: "Qual cumprimento informal você usaria com amigos?",
-    opcoes: ["Good morning, sir", "How do you do?", "Hi! / Hey!", "Good evening, madam"],
+    enunciado: "How do you say <strong>\"ônibus\"</strong> in English?",
+    opcoes: ["Car", "Truck", "Bus", "Motorcycle"],
     correta: 2,
-    feedback: "✅ Isso mesmo! <strong>Hi</strong> e <strong>Hey</strong> são cumprimentos informais, perfeitos para usar com amigos, colegas e pessoas próximas!"
+    feedback: "✅ Correct! <strong>Ônibus</strong> in English is <strong>BUS</strong>! The famous red double-decker buses in London are very well known around the world!"
   },
   {
-    tema: "Cumprimentos Formais",
-    temaColor: "#6a1b9a",
-    pontos: 15,
-    enunciado: "Em uma entrevista de emprego, qual é o cumprimento mais adequado?",
-    opcoes: [
-      "Hey, what's up?",
-      "Good morning/afternoon. Nice to meet you.",
-      "Yo!",
-      "Hi there, buddy!"
-    ],
-    correta: 1,
-    feedback: "✅ Perfeito! Em situações formais como entrevistas, use <strong>Good morning/afternoon</strong> seguido de <strong>Nice to meet you</strong> (Prazer em conhecê-lo)."
-  },
-  {
-    tema: "Como Está Você?",
-    temaColor: "#c62828",
+    tema: "Means of Transport",
+    temaColor: "#e65100",
     pontos: 10,
-    enunciado: "Qual é a forma mais comum de perguntar 'Como você está?' em inglês?",
-    opcoes: ["What's your name?", "How are you?", "Where are you from?", "How old are you?"],
+    enunciado: "How do you say <strong>\"bicicleta\"</strong> in English?",
+    opcoes: ["Motorcycle", "Bike / Bicycle", "Scooter", "Car"],
     correta: 1,
-    feedback: "✅ Muito bem! <strong>How are you?</strong> é a forma mais comum de perguntar como alguém está. É educado perguntar isso após cumprimentar!"
+    feedback: "✅ Correct! <strong>Bicicleta</strong> in English is <strong>BIKE</strong> (informal) or <strong>BICYCLE</strong> (formal)! Example: <em>\"I ride my bike to school.\"</em> = Eu vou de bicicleta para a escola."
   },
   {
-    tema: "Respostas a Cumprimentos",
-    temaColor: "#827717",
+    tema: "Means of Transport",
+    temaColor: "#e65100",
     pontos: 10,
-    enunciado: "Alguém diz <em>\"How are you?\"</em>. Qual é uma resposta adequada?",
-    opcoes: [
-      "My name is John",
-      "I'm fine, thank you. And you?",
-      "I'm 12 years old",
-      "Nice to meet you"
-    ],
-    correta: 1,
-    feedback: "✅ Correto! <strong>I'm fine, thank you. And you?</strong> é uma resposta educada e completa. Você responde e devolve a pergunta!"
+    enunciado: "How do you say <strong>\"moto\"</strong> (motocicleta) in English?",
+    opcoes: ["Truck", "Car", "Bike", "Motorcycle"],
+    correta: 3,
+    feedback: "✅ Correct! <strong>Moto</strong> in English is <strong>MOTORCYCLE</strong>! It can also be called <em>motorbike</em>. Example: <em>\"My uncle rides a motorcycle.\"</em> = Meu tio anda de moto."
   },
   {
-    tema: "Respostas a Cumprimentos",
-    temaColor: "#827717",
-    pontos: 15,
-    enunciado: "Quais são outras formas de responder <em>\"How are you?\"</em> positivamente?",
-    opcoes: [
-      "I'm terrible / I'm awful",
-      "I'm great! / I'm very well! / I'm doing good!",
-      "Goodbye / See you later",
-      "What's up? / Hey!"
-    ],
-    correta: 1,
-    feedback: "✅ Excelente! Você pode variar suas respostas: <strong>I'm great!</strong> (Estou ótimo!), <strong>I'm very well!</strong> (Estou muito bem!), <strong>I'm doing good!</strong> (Estou indo bem!)."
-  },
-  {
-    tema: "Cumprimentos Informais",
-    temaColor: "#1a73e8",
+    tema: "Means of Transport",
+    temaColor: "#e65100",
     pontos: 10,
-    enunciado: "O que significa a expressão informal <em>\"What's up?\"</em>?",
-    opcoes: [
-      "O que está em cima?",
-      "Como você está? / E aí?",
-      "Qual é seu nome?",
-      "Onde você mora?"
-    ],
-    correta: 1,
-    feedback: "✅ Isso mesmo! <strong>What's up?</strong> é uma forma muito informal de perguntar 'Como você está?' ou 'E aí?'. Use só com amigos!"
-  },
-  {
-    tema: "Despedidas",
-    temaColor: "#bf360c",
-    pontos: 10,
-    enunciado: "Qual é a despedida mais comum em inglês?",
-    opcoes: ["Hello", "Good morning", "Goodbye / Bye", "How are you?"],
+    enunciado: "How do you say <strong>\"caminhão\"</strong> in English?",
+    opcoes: ["Bus", "Car", "Truck", "Ship"],
     correta: 2,
-    feedback: "✅ Correto! <strong>Goodbye</strong> (ou <strong>Bye</strong>, mais informal) é a despedida mais comum em inglês!"
+    feedback: "✅ Correct! <strong>Caminhão</strong> in English is <strong>TRUCK</strong>! Example: <em>\"The truck carries food to the supermarket.\"</em> = O caminhão leva comida ao supermercado."
   },
   {
-    tema: "Despedidas",
-    temaColor: "#bf360c",
+    tema: "Means of Transport",
+    temaColor: "#e65100",
     pontos: 10,
-    enunciado: "O que significa <em>\"See you later\"</em>?",
-    opcoes: ["Boa noite", "Te vejo depois / Até logo", "Como vai?", "Prazer em conhecê-lo"],
+    enunciado: "How do you say <strong>\"barco\"</strong> (pequena embarcação) in English?",
+    opcoes: ["Ship", "Boat", "Submarine", "Helicopter"],
     correta: 1,
-    feedback: "✅ Muito bem! <strong>See you later</strong> significa 'Te vejo depois' ou 'Até logo'. É uma despedida casual quando você vai encontrar a pessoa novamente!"
+    feedback: "✅ Correct! A small vessel is a <strong>BOAT</strong>! <em>Ship</em> is used for large vessels (navios grandes). Example: <em>\"We crossed the lake by boat.\"</em> = Cruzamos o lago de barco."
   },
   {
-    tema: "Apresentações",
-    temaColor: "#00695c",
+    tema: "Means of Transport",
+    temaColor: "#e65100",
     pontos: 10,
-    enunciado: "Como você pergunta o nome de alguém em inglês?",
-    opcoes: ["How are you?", "What's your name?", "Where are you?", "Good morning"],
-    correta: 1,
-    feedback: "✅ Perfeito! <strong>What's your name?</strong> significa 'Qual é o seu nome?'. É a forma mais comum de perguntar o nome de alguém!"
-  },
-  {
-    tema: "Apresentações",
-    temaColor: "#00695c",
-    pontos: 10,
-    enunciado: "Como você responde quando alguém pergunta <em>\"What's your name?\"</em>?",
-    opcoes: [
-      "I'm fine, thank you",
-      "My name is... / I'm...",
-      "Nice to meet you",
-      "See you later"
-    ],
-    correta: 1,
-    feedback: "✅ Correto! Você pode responder: <strong>My name is Maria</strong> ou simplesmente <strong>I'm Maria</strong>."
-  },
-  {
-    tema: "Apresentações",
-    temaColor: "#00695c",
-    pontos: 15,
-    enunciado: "O que você diz quando conhece alguém pela primeira vez?",
-    opcoes: [
-      "See you again",
-      "Nice to meet you / Pleased to meet you",
-      "Good night",
-      "Take care"
-    ],
-    correta: 1,
-    feedback: "✅ Excelente! <strong>Nice to meet you</strong> (ou <strong>Pleased to meet you</strong>, mais formal) significa 'Prazer em conhecê-lo'. Use quando conhecer alguém pela primeira vez!"
-  },
-  {
-    tema: "Expressões de Cortesia",
-    temaColor: "#880e4f",
-    pontos: 10,
-    enunciado: "Qual palavra você sempre deve usar ao pedir algo em inglês?",
-    opcoes: ["Please", "Goodbye", "Hello", "Thanks"],
-    correta: 0,
-    feedback: "✅ Muito bem! <strong>Please</strong> (por favor) é essencial para ser educado ao fazer pedidos: <em>'Can I have water, please?'</em>"
-  },
-  {
-    tema: "Expressões de Cortesia",
-    temaColor: "#880e4f",
-    pontos: 10,
-    enunciado: "Como você agradece em inglês?",
-    opcoes: ["Sorry", "Thank you / Thanks", "Excuse me", "You're welcome"],
-    correta: 1,
-    feedback: "✅ Correto! <strong>Thank you</strong> (formal) ou <strong>Thanks</strong> (informal) significam 'obrigado/obrigada'."
-  },
-  {
-    tema: "Expressões de Cortesia",
-    temaColor: "#880e4f",
-    pontos: 10,
-    enunciado: "Alguém diz <em>\"Thank you\"</em>. Como você responde?",
-    opcoes: ["Sorry", "Goodbye", "You're welcome", "Good morning"],
+    enunciado: "How do you say <strong>\"navio\"</strong> (large vessel) in English?",
+    opcoes: ["Boat", "Submarine", "Ship", "Bus"],
     correta: 2,
-    feedback: "✅ Perfeito! <strong>You're welcome</strong> significa 'De nada'. Outras opções: <strong>No problem</strong> ou <strong>My pleasure</strong>!"
+    feedback: "✅ Correct! Large vessels are called <strong>SHIP</strong> in English! Example: <em>\"The ship sailed across the Atlantic Ocean.\"</em> = O navio navegou pelo Oceano Atlântico."
   },
   {
-    tema: "Despedidas",
-    temaColor: "#bf360c",
+    tema: "Means of Transport",
+    temaColor: "#e65100",
     pontos: 15,
-    enunciado: "Qual é a diferença entre <em>\"Goodbye\"</em> e <em>\"See you soon\"</em>?",
-    opcoes: [
-      "Não há diferença",
-      "Goodbye é mais definitivo; See you soon indica que se verão em breve",
-      "See you soon é formal; Goodbye é informal",
-      "São despedidas apenas para a noite"
-    ],
-    correta: 1,
-    feedback: "✅ Muito bem! <strong>Goodbye</strong> é mais neutro. <strong>See you soon</strong> ('Até breve') indica que você espera ver a pessoa novamente em breve!"
-  },
-  {
-    tema: "Cumprimentos Informais",
-    temaColor: "#1a73e8",
-    pontos: 10,
-    enunciado: "Entre jovens, qual cumprimento super informal é comum?",
-    opcoes: [
-      "How do you do, sir?",
-      "Good evening, madam",
-      "Sup? / Yo! / Hey there!",
-      "Pleased to make your acquaintance"
-    ],
+    enunciado: "Which means of transport travels <strong>underwater</strong> (embaixo d'água)?",
+    opcoes: ["Airplane", "Helicopter", "Submarine", "Truck"],
     correta: 2,
-    feedback: "✅ Isso mesmo! <strong>Sup?</strong> (abreviação de 'What's up?'), <strong>Yo!</strong> e <strong>Hey there!</strong> são super informais. Use apenas com amigos!"
+    feedback: "✅ Correct! The <strong>SUBMARINE</strong> travels underwater! The word <em>sub</em> means <em>under/below</em>. <strong>Submarino</strong> in English is <strong>submarine</strong>!"
   },
   {
-    tema: "Cumprimentos por Período",
-    temaColor: "#43a047",
-    pontos: 15,
-    enunciado: "Em que período do dia você deve usar <em>\"Good evening\"</em>?",
-    opcoes: [
-      "De manhã (6h às 12h)",
-      "À tarde (12h às 18h)",
-      "À noite (após 18h até antes de dormir)",
-      "Ao acordar ou antes de dormir"
-    ],
+    tema: "Means of Transport",
+    temaColor: "#e65100",
+    pontos: 10,
+    enunciado: "How do you say <strong>\"avião\"</strong> in English?",
+    opcoes: ["Helicopter", "Submarine", "Airplane / Plane", "Boat"],
     correta: 2,
-    feedback: "✅ Correto! <strong>Good evening</strong> é usado à noite, geralmente após 18h (6 da tarde) e até a hora de dormir!"
+    feedback: "✅ Correct! <strong>Avião</strong> in English is <strong>AIRPLANE</strong> or just <strong>PLANE</strong>! Example: <em>\"We took a plane to travel to the USA.\"</em> = Pegamos um avião para viajar para os EUA."
   },
   {
-    tema: "Respostas a Cumprimentos",
-    temaColor: "#827717",
+    tema: "Means of Transport",
+    temaColor: "#e65100",
     pontos: 15,
-    enunciado: "Se você não está muito bem, como pode responder <em>\"How are you?\"</em> honestamente?",
-    opcoes: [
-      "I'm great!",
-      "I'm okay / Not so good / I've been better",
-      "Thank you very much",
-      "Nice to meet you"
-    ],
-    correta: 1,
-    feedback: "✅ Correto! Você pode ser honesto: <strong>I'm okay</strong> (Estou ok), <strong>Not so good</strong> (Não muito bem), <strong>I've been better</strong> (Já estive melhor)."
-  },
-  {
-    tema: "Despedidas",
-    temaColor: "#bf360c",
-    pontos: 10,
-    enunciado: "O que significa <em>\"Take care\"</em>?",
-    opcoes: [
-      "Tenha cuidado / Cuide-se",
-      "Boa noite",
-      "Até amanhã",
-      "Prazer em conhecê-lo"
-    ],
-    correta: 0,
-    feedback: "✅ Muito bem! <strong>Take care</strong> significa 'Cuide-se' ou 'Tenha cuidado'. É uma despedida carinhosa que mostra que você se importa!"
-  },
-  {
-    tema: "Apresentações",
-    temaColor: "#00695c",
-    pontos: 15,
-    enunciado: "Como você apresenta seu amigo João para outra pessoa?",
-    opcoes: [
-      "Goodbye João",
-      "This is my friend João / Meet João",
-      "How are you João?",
-      "See you later João"
-    ],
-    correta: 1,
-    feedback: "✅ Perfeito! Use: <strong>This is my friend João</strong> (Este é meu amigo João) ou <strong>Meet João</strong> (Conheça o João)."
-  },
-  {
-    tema: "Cumprimentos Formais",
-    temaColor: "#6a1b9a",
-    pontos: 15,
-    enunciado: "Qual é o cumprimento MAIS formal em inglês?",
-    opcoes: [
-      "Hey!",
-      "What's up?",
-      "How do you do?",
-      "Yo, buddy!"
-    ],
-    correta: 2,
-    feedback: "✅ Excelente! <strong>How do you do?</strong> é extremamente formal, usado em situações muito formais ou oficiais. A resposta é a mesma frase: 'How do you do?'"
-  },
-  {
-    tema: "Despedidas",
-    temaColor: "#bf360c",
-    pontos: 10,
-    enunciado: "Se você vai ver a pessoa no dia seguinte, o que pode dizer?",
-    opcoes: ["Goodbye forever", "See you tomorrow!", "Good night", "Nice to meet you"],
-    correta: 1,
-    feedback: "✅ Correto! <strong>See you tomorrow!</strong> significa 'Te vejo amanhã!'. Outras opções: <strong>See you next week</strong> (semana que vem), <strong>See you Monday</strong> (segunda-feira)."
-  },
-  {
-    tema: "Respostas a Cumprimentos",
-    temaColor: "#827717",
-    pontos: 10,
-    enunciado: "Alguém diz <em>\"Good morning!\"</em>. Como você responde?",
-    opcoes: [
-      "Thank you!",
-      "Good morning! (de volta)",
-      "Goodbye!",
-      "My name is..."
-    ],
-    correta: 1,
-    feedback: "✅ Muito bem! Quando alguém cumprimenta você, é educado responder com o mesmo cumprimento: <strong>Good morning!</strong>"
-  },
-  {
-    tema: "Expressões de Cortesia",
-    temaColor: "#880e4f",
-    pontos: 10,
-    enunciado: "Como você pede desculpas em inglês?",
-    opcoes: ["Thank you", "Please", "I'm sorry / Sorry", "Excuse me"],
-    correta: 2,
-    feedback: "✅ Correto! <strong>I'm sorry</strong> ou <strong>Sorry</strong> significam 'Desculpe'. <strong>Excuse me</strong> é usado para chamar atenção ou pedir licença!"
-  },
-  {
-    tema: "Cumprimentos em Contexto",
-    temaColor: "#1565c0",
-    pontos: 15,
-    enunciado: "Você está em uma loja e quer chamar o vendedor. O que você diz?",
-    opcoes: [
-      "Hey you!",
-      "Excuse me!",
-      "Yo!",
-      "What's up?"
-    ],
-    correta: 1,
-    feedback: "✅ Perfeito! <strong>Excuse me</strong> é usado para chamar atenção de forma educada, pedir licença para passar ou interromper alguém educadamente!"
-  },
-  {
-    tema: "Despedidas",
-    temaColor: "#bf360c",
-    pontos: 15,
-    enunciado: "Qual despedida você pode usar em uma conversa por telefone ou e-mail profissional?",
-    opcoes: [
-      "See ya! / Catch you later!",
-      "Have a great day! / Best regards!",
-      "Yo, bye!",
-      "Later, dude!"
-    ],
-    correta: 1,
-    feedback: "✅ Excelente! Em contextos profissionais use: <strong>Have a great day!</strong> (Tenha um ótimo dia!), <strong>Best regards!</strong> (Atenciosamente), <strong>Take care!</strong>"
+    enunciado: "Which means of transport can <strong>fly AND land without a runway</strong> (pista)?",
+    opcoes: ["Airplane", "Submarine", "Boat", "Helicopter"],
+    correta: 3,
+    feedback: "✅ Correct! A <strong>HELICOPTER</strong> can fly and land anywhere — no runway needed! <strong>Helicóptero</strong> in English is <strong>helicopter</strong>. It uses rotating blades (hélices) to fly!"
   }
 ];
 
@@ -990,11 +823,11 @@ function getMedalha(pts) {
 function getMensagem(pts) {
   const max = perguntas.reduce((s, p) => s + p.pontos, 0);
   const pct = pts / max;
-  if (pct >= 0.9) return 'Amazing! You\'re an English greetings expert! Keep it up! 🌟';
-  if (pct >= 0.7) return 'Very good! You know the main greetings. Review what you missed! 💪';
+  if (pct >= 0.9) return 'Amazing! You know colors and transport like a pro! Keep it up! 🌟';
+  if (pct >= 0.7) return 'Very good! You know most of the vocabulary. Review what you missed! 💪';
   if (pct >= 0.5) return 'Good job! You\'re on the right track. Study a bit more! 📖';
-  if (pct >= 0.3) return 'You\'re learning! Review the content and try again! 🎯';
-  return 'Don\'t give up! Study the material and try again. Practice makes perfect! 📚';
+  if (pct >= 0.3) return 'You\'re learning! Review the words and try again! 🎯';
+  return 'Don\'t give up! Study the colors and transport words and try again. Practice makes perfect! 📚';
 }
 
 function proximaPergunta() {
