@@ -446,7 +446,7 @@
 <header>
   <div class="emoji-row">📚 ✏️ 🌟 📖 🎯</div>
   <h1>Quiz de Língua Portuguesa</h1>
-  <p>6° Ano — Linguagem, Língua e Variação Linguística</p>
+  <p>6° Ano — Revisão: Leitura, Substantivos, Encontro Vocálico e Separação Silábica</p>
 </header>
 
 <div class="nav-quizzes">
@@ -475,7 +475,7 @@
 
 <div class="progresso-wrap">
   <div class="progresso-texto">
-    <span id="progressoTexto">Pergunta 1 de 30</span>
+    <span id="progressoTexto">Pergunta 1 de 50</span>
     <span id="pct">0%</span>
   </div>
   <div class="barra-bg"><div class="barra-fill" id="barraFill"></div></div>
@@ -514,370 +514,475 @@
 
 <script>
 const perguntas = [
+
+  // =============================================
+  // 1. LEITURA, INTERPRETAÇÃO E COMPREENSÃO
+  // =============================================
   {
-    tema: "Linguagem Não Verbal",
-    temaColor: "#6a1b9a",
-    pontos: 10,
-    enunciado: "Seu amigo faz um gesto de \"joia\" com o polegar levantado para dizer que está tudo bem. Que tipo de linguagem ele usou?",
-    opcoes: ["Linguagem verbal oral", "Linguagem não verbal (gestual)", "Linguagem escrita", "Linguagem formal"],
-    correta: 1,
-    feedback: "✅ Isso mesmo! Gestos, expressões faciais e movimentos corporais são exemplos de <strong>linguagem não verbal</strong>. Ela complementa ou substitui as palavras!"
-  },
-  {
-    tema: "Texto Multimodal",
-    temaColor: "#e65100",
-    pontos: 15,
-    enunciado: "Um vídeo no YouTube que tem narração, legendas e imagens em movimento é um exemplo de:",
-    opcoes: ["Texto apenas verbal", "Texto apenas visual", "Texto multimodal", "Texto exclusivamente oral"],
-    correta: 2,
-    feedback: "✅ Perfeito! Vídeos com narração (oral), legendas (escrita) e imagens são <strong>textos multimodais</strong> — combinam várias linguagens ao mesmo tempo!"
-  },
-  {
-    tema: "Interlocutores",
-    temaColor: "#2e7d32",
-    pontos: 10,
-    enunciado: "Durante uma aula, a professora explica e os alunos fazem perguntas. Nessa situação, os <strong>interlocutores</strong> são:",
-    opcoes: ["Apenas a professora", "Apenas os alunos", "A professora e os alunos", "Somente quem fala, não quem ouve"],
-    correta: 2,
-    feedback: "✅ Muito bem! Os <strong>interlocutores</strong> são todos que participam da comunicação — tanto quem fala quanto quem ouve e responde. A comunicação é uma via de mão dupla!"
-  },
-  {
-    tema: "Variação Regional",
-    temaColor: "#1565c0",
-    pontos: 15,
-    enunciado: "Observe as palavras: <em>\"aipim\"</em> (Norte), <em>\"macaxeira\"</em> (Nordeste) e <em>\"mandioca\"</em> (Sul/Sudeste). Todas se referem ao mesmo alimento. Isso mostra:",
-    opcoes: ["Que duas regiões estão erradas", "Variação regional — cada região tem suas palavras", "Que existe apenas uma palavra correta", "Um erro nos dicionários"],
-    correta: 1,
-    feedback: "✅ Correto! A <strong>variação regional</strong> faz com que a mesma coisa tenha nomes diferentes em cada região do Brasil. Nenhuma forma está errada — todas fazem parte da nossa riqueza linguística!"
-  },
-  {
-    tema: "Variação Histórica",
-    temaColor: "#4a148c",
-    pontos: 15,
-    enunciado: "Antigamente as pessoas usavam a palavra <em>\"automóvel\"</em>. Hoje quase todo mundo fala <em>\"carro\"</em>. Isso exemplifica:",
-    opcoes: ["Variação regional", "Variação histórica", "Preconceito linguístico", "Norma padrão"],
-    correta: 1,
-    feedback: "✅ Perfeito! A <strong>variação histórica</strong> mostra mudanças na língua ao longo do tempo. Palavras podem sair de moda, ganhar novos significados ou desaparecer completamente!"
-  },
-  {
-    tema: "Variação Social",
-    temaColor: "#bf360c",
-    pontos: 15,
-    enunciado: "Um advogado usa termos como <em>\"réu\"</em>, <em>\"jurisprudência\"</em> e <em>\"habeas corpus\"</em> no trabalho. Esse vocabulário específico é exemplo de:",
-    opcoes: ["Variação regional", "Variação situacional", "Variação social (linguagem profissional)", "Preconceito linguístico"],
-    correta: 2,
-    feedback: "✅ Muito bem! A <strong>variação social</strong> inclui o vocabulário técnico de cada profissão. Médicos, advogados, engenheiros — cada grupo tem seus termos específicos!"
-  },
-  {
-    tema: "Variação Situacional",
+    tema: "Leitura e Interpretação",
     temaColor: "#006064",
     pontos: 15,
-    enunciado: "Pedro vai pedir um favor. Para o irmão, ele diz: <em>\"Me empresta 10 reais?\"</em>. Para o diretor da escola: <em>\"Senhor, poderia me emprestar 10 reais, por favor?\"</em>. Pedro está usando:",
-    opcoes: ["Variação histórica", "Variação regional", "Variação situacional", "Erro de português"],
-    correta: 2,
-    feedback: "✅ Ótimo! A <strong>variação situacional</strong> é ajustar a linguagem conforme o contexto e com quem falamos. Falar diferente com amigos e autoridades é adequado e inteligente!"
-  },
-  {
-    tema: "Norma Padrão",
-    temaColor: "#827717",
-    pontos: 15,
-    enunciado: "Em qual situação é MAIS importante usar a norma padrão?",
-    opcoes: [
-      "Conversando com amigos no intervalo",
-      "Jogando videogame online",
-      "Escrevendo uma redação de vestibular",
-      "Mandando mensagem para a família"
-    ],
-    correta: 2,
-    feedback: "✅ Correto! A <strong>norma padrão</strong> é exigida em contextos formais como provas, redações, entrevistas de emprego e documentos oficiais. Em conversas informais, podemos usar linguagem mais relaxada!"
-  },
-  {
-    tema: "Diversidade Linguística",
-    temaColor: "#00695c",
-    pontos: 15,
-    enunciado: "No Brasil, além do português, são faladas mais de 200 línguas indígenas. Preservar essas línguas é importante porque:",
-    opcoes: [
-      "Todo mundo deveria falar só português",
-      "As línguas indígenas são erradas",
-      "Cada língua representa cultura, história e identidade de um povo",
-      "Línguas indígenas atrapalham a comunicação"
-    ],
-    correta: 2,
-    feedback: "✅ Excelente! A <strong>diversidade linguística</strong> é uma riqueza cultural! Cada língua carrega conhecimentos, histórias e visões de mundo únicas. Preservá-las é preservar nossa história e identidade!"
-  },
-  {
-    tema: "Linguagem Verbal",
-    temaColor: "#1a73e8",
-    pontos: 10,
-    enunciado: "Um podcast de notícias usa qual tipo de linguagem verbal?",
-    opcoes: ["Linguagem verbal escrita", "Linguagem verbal oral", "Linguagem não verbal", "Linguagem gestual"],
+    enunciado: "Leia o texto e responda: <span class='destaque'>&ldquo;Ana acordou cedo, tomou café e saiu correndo para não perder o ônibus. Quando chegou ao ponto, o ônibus já tinha ido embora. Ela ficou triste e voltou para casa.&rdquo;</span>Por que Ana ficou triste?",
+    opcoes: ["Porque não tomou café da manhã", "Porque o ônibus já havia partido quando ela chegou", "Porque estava chovendo muito", "Porque perdeu seus documentos"],
     correta: 1,
-    feedback: "✅ Muito bem! Podcasts usam a <strong>linguagem verbal oral</strong> — são palavras faladas, transmitidas pelo áudio. Já um blog de notícias usa linguagem verbal escrita!"
+    feedback: "✅ O texto diz que quando Ana chegou ao ponto, &ldquo;o ônibus já tinha ido embora&rdquo;. Essa é uma informação <strong>explícita</strong> — está escrita diretamente no texto!"
   },
   {
-    tema: "Língua",
-    temaColor: "#c62828",
-    pontos: 10,
-    enunciado: "A língua portuguesa pertence a:",
-    opcoes: [
-      "Apenas aos professores de português",
-      "Somente a quem mora em Portugal",
-      "A todos que a utilizam para se comunicar",
-      "Apenas a quem fala formalmente"
-    ],
-    correta: 2,
-    feedback: "✅ Perfeito! A <strong>língua</strong> é um patrimônio coletivo — pertence a todos que a falam! Cada falante contribui para sua evolução e riqueza, independentemente de como fala!"
-  },
-  {
-    tema: "Preconceito Linguístico",
-    temaColor: "#880e4f",
-    pontos: 20,
-    enunciado: "Carlos, que é do interior do Nordeste, fala de um jeito diferente dos colegas de São Paulo. Um colega ri dele e diz: <em>\"Você fala tudo errado!\"</em>. Esse comportamento é:",
-    opcoes: [
-      "Correto, porque só existe um jeito certo de falar",
-      "Preconceito linguístico, pois nenhuma variedade é inferior",
-      "Normal, porque o sotaque nordestino tem erros de gramática",
-      "Adequado, pois Carlos deveria aprender a norma padrão para tudo"
-    ],
-    correta: 1,
-    feedback: "✅ Muito bem! O <strong>preconceito linguístico</strong> é tratar uma forma de falar como errada ou inferior só porque é diferente. Todas as variedades do português são válidas e expressam a riqueza cultural do nosso povo!"
-  },
-  {
-    tema: "Linguagem Verbal",
-    temaColor: "#1a73e8",
-    pontos: 10,
-    enunciado: "Qual destas situações usa apenas linguagem verbal escrita?",
-    opcoes: ["Uma videoconferência", "Um cartaz com desenhos e frases", "Um e-mail", "Um filme com legendas"],
-    correta: 2,
-    feedback: "✅ Correto! Um <strong>e-mail</strong> usa apenas palavras escritas. As outras opções combinam diferentes tipos de linguagem!"
-  },
-  {
-    tema: "Linguagem Não Verbal",
-    temaColor: "#6a1b9a",
-    pontos: 10,
-    enunciado: "Uma pessoa cruza os braços e franze a testa quando ouve algo de que não gosta. Isso é um exemplo de comunicação:",
-    opcoes: ["Verbal oral", "Verbal escrita", "Não verbal (expressão corporal)", "Formal"],
-    correta: 2,
-    feedback: "✅ Excelente! Nossa <strong>linguagem corporal</strong> (postura, expressões faciais, gestos) comunica muito sem usar palavras. É linguagem não verbal poderosa!"
-  },
-  {
-    tema: "Texto Multimodal",
-    temaColor: "#e65100",
-    pontos: 15,
-    enunciado: "Uma história em quadrinhos (HQ) combina balões com texto e desenhos. Por que ela é um texto multimodal?",
-    opcoes: [
-      "Porque tem muitas páginas",
-      "Porque usa imagens E palavras juntas para comunicar",
-      "Porque é colorida",
-      "Porque só crianças leem"
-    ],
-    correta: 1,
-    feedback: "✅ Perfeito! As histórias em quadrinhos são <strong>multimodais</strong> porque combinam linguagem verbal (textos nos balões) e linguagem não verbal (imagens, expressões dos personagens) para contar a história!"
-  },
-  {
-    tema: "Interlocutores",
-    temaColor: "#2e7d32",
-    pontos: 10,
-    enunciado: "Numa chamada de vídeo entre vó e neto, quem são os interlocutores?",
-    opcoes: ["Só a vó", "Só o neto", "A vó e o neto", "O celular"],
-    correta: 2,
-    feedback: "✅ Muito bem! A vó e o neto são os <strong>interlocutores</strong> — as pessoas que estão se comunicando. O celular é apenas o meio de comunicação!"
-  },
-  {
-    tema: "Língua",
-    temaColor: "#c62828",
-    pontos: 10,
-    enunciado: "Qual a diferença entre língua e linguagem?",
-    opcoes: [
-      "Não há diferença, são sinônimos",
-      "Língua é um sistema específico (como português); linguagem é qualquer forma de comunicação",
-      "Língua é só oral, linguagem é só escrita",
-      "Língua é formal, linguagem é informal"
-    ],
-    correta: 1,
-    feedback: "✅ Correto! <strong>Linguagem</strong> é qualquer forma de comunicação (verbal, não verbal, musical, etc.). <strong>Língua</strong> é um sistema específico de sinais e regras, como o português, inglês ou libras!"
-  },
-  {
-    tema: "Diversidade Linguística",
-    temaColor: "#00695c",
-    pontos: 15,
-    enunciado: "Em algumas regiões do Brasil, comunidades falam alemão, italiano ou japonês em casa. Isso mostra que:",
-    opcoes: [
-      "Essas pessoas não são brasileiras",
-      "O Brasil é um país com grande diversidade linguística",
-      "Elas deveriam falar só português",
-      "Isso é proibido por lei"
-    ],
-    correta: 1,
-    feedback: "✅ Excelente! O Brasil tem <strong>grande diversidade linguística</strong> graças aos povos indígenas e imigrantes. Falar outras línguas além do português é um direito e uma riqueza cultural!"
-  },
-  {
-    tema: "Variação Regional",
-    temaColor: "#1565c0",
-    pontos: 15,
-    enunciado: "No Sul do Brasil, as pessoas chamam o café da manhã de <em>\"xícara\"</em> em algumas regiões. Já em outras partes do país é <em>\"café da manhã\"</em>. Qual afirmação está correta?",
-    opcoes: [
-      "Apenas uma forma está certa",
-      "Ambas estão corretas — são variações regionais válidas",
-      "O Sul fala errado",
-      "Isso é erro de português"
-    ],
-    correta: 1,
-    feedback: "✅ Perfeito! Todas as <strong>variações regionais</strong> são válidas e corretas! Elas mostram a riqueza e diversidade da língua portuguesa no Brasil!"
-  },
-  {
-    tema: "Variação Histórica",
-    temaColor: "#4a148c",
-    pontos: 15,
-    enunciado: "A palavra <em>\"você\"</em> que usamos hoje veio de <em>\"vossa mercê\"</em>, que depois virou <em>\"vosmecê\"</em> e depois <em>\"você\"</em>. Esse processo mostra:",
-    opcoes: [
-      "Que as pessoas falam cada vez pior",
-      "A variação histórica — a língua muda com o tempo",
-      "Um erro que se espalhou",
-      "Que a língua parou de evoluir"
-    ],
-    correta: 1,
-    feedback: "✅ Muito bem! A <strong>variação histórica</strong> é natural e contínua. As línguas estão sempre mudando — palavras se transformam, surgem novos termos e outros caem em desuso!"
-  },
-  {
-    tema: "Variação Social",
-    temaColor: "#bf360c",
-    pontos: 15,
-    enunciado: "Gamers usam termos como <em>\"GG\"</em>, <em>\"lag\"</em>, <em>\"nerf\"</em>. Já surfistas falam <em>\"dropar\"</em>, <em>\"tubo\"</em>, <em>\"manobra\"</em>. Isso exemplifica:",
-    opcoes: [
-      "Variação regional",
-      "Variação social — cada grupo tem seu vocabulário",
-      "Preconceito linguístico",
-      "Norma padrão"
-    ],
-    correta: 1,
-    feedback: "✅ Ótimo! A <strong>variação social</strong> faz com que grupos com interesses comuns (gamers, surfistas, skatistas) desenvolvam vocabulário próprio para se comunicar entre si!"
-  },
-  {
-    tema: "Variação Situacional",
+    tema: "Leitura e Interpretação",
     temaColor: "#006064",
     pontos: 15,
-    enunciado: "Maria está fazendo uma apresentação de trabalho na escola. Qual linguagem ela deve usar?",
-    opcoes: [
-      "Igual à que usa no WhatsApp com os amigos",
-      "Mais formal, com vocabulário adequado ao contexto escolar",
-      "Cheia de gírias para parecer legal",
-      "Não importa, qualquer jeito serve"
-    ],
+    enunciado: "Leia e responda: <span class='destaque'>&ldquo;O céu estava cheio de nuvens escuras e o vento soprava forte. As crianças olharam pela janela e decidiram ficar em casa brincando.&rdquo;</span>O que podemos <strong>concluir</strong> sobre o tempo nesse dia?",
+    opcoes: ["Estava um dia ensolarado e quente", "Estava prestes a chover", "Havia neve nas ruas", "O vento estava fraco"],
     correta: 1,
-    feedback: "✅ Correto! A <strong>variação situacional</strong> pede que usemos linguagem mais formal em apresentações escolares. Escolher a linguagem adequada a cada situação é uma habilidade importante!"
+    feedback: "✅ As pistas do texto (nuvens escuras + vento forte) indicam que ia chover. Isso é uma <strong>inferência</strong>: concluímos algo que não está escrito diretamente, mas que o texto nos permite deduzir."
   },
   {
-    tema: "Norma Padrão",
-    temaColor: "#827717",
+    tema: "Leitura e Interpretação",
+    temaColor: "#006064",
     pontos: 15,
-    enunciado: "Por que aprendemos a norma padrão na escola?",
-    opcoes: [
-      "Porque as outras formas de falar estão erradas",
-      "Para substituir nossa forma natural de falar",
-      "Para termos mais uma ferramenta de comunicação em situações formais",
-      "Porque a norma padrão é superior"
-    ],
-    correta: 2,
-    feedback: "✅ Muito bem! Aprendemos a <strong>norma padrão</strong> para ter mais opções de comunicação. É como aprender uma nova habilidade — não apaga o que já sabemos, só amplia nossas possibilidades!"
+    enunciado: "Leia e responda: <span class='destaque'>&ldquo;Lucas é um garoto muito curioso. Ele lê livros sobre dinossauros, planetas e animais marinhos. Sua mãe diz que ele é um &lsquo;poço de conhecimento&rsquo;.&rdquo;</span>O que significa a expressão <strong>&ldquo;poço de conhecimento&rdquo;</strong>?",
+    opcoes: ["Que Lucas mora perto de um poço d'água", "Que Lucas tem muito conhecimento acumulado", "Que Lucas gosta de beber água", "Que Lucas é uma pessoa muito alta"],
+    correta: 1,
+    feedback: "✅ &ldquo;Poço de conhecimento&rdquo; é uma <strong>metáfora</strong>: assim como um poço tem muita água, Lucas tem muito conhecimento. O contexto do texto (ele lê sobre vários assuntos) ajuda a entender esse sentido figurado."
   },
   {
-    tema: "Linguagem do Dia a Dia",
-    temaColor: "#1b5e20",
+    tema: "Leitura e Interpretação",
+    temaColor: "#006064",
+    pontos: 15,
+    enunciado: "Leia e responda: <span class='destaque'>&ldquo;Era uma vez um coelho que adorava cenouras. Ele encontrou uma cenoura gigante, mas não conseguia puxá-la sozinho. Chamou seus amigos — uma raposa, um esquilo e um urso — e juntos conseguiram arrancá-la. Dividiram a refeição com alegria.&rdquo;</span>Qual é a <strong>mensagem principal</strong> dessa história?",
+    opcoes: ["Cenouras gigantes existem nas florestas", "Trabalhar em equipe ajuda a superar desafios", "Coelhos não são animais fortes", "Animais nunca compartilham comida"],
+    correta: 1,
+    feedback: "✅ A mensagem central é que a <strong>união e o trabalho em equipe</strong> ajudam a superar desafios. O coelho não conseguia sozinho, mas com a ajuda dos amigos conseguiu — e ainda dividiu o resultado!"
+  },
+  {
+    tema: "Leitura e Interpretação",
+    temaColor: "#006064",
     pontos: 10,
-    enunciado: "Júlia escreveu: <em>\"Tipo assim, a gente foi lá e fez um negócio massa!\"</em>. Essa linguagem é adequada para:",
-    opcoes: [
-      "Uma redação de vestibular",
-      "Um documento oficial",
-      "Uma conversa informal com amigos",
-      "Um relatório de trabalho"
-    ],
-    correta: 2,
-    feedback: "✅ Correto! A <strong>linguagem informal do dia a dia</strong> é perfeita para conversas com amigos. Para textos formais, usamos a norma padrão com vocabulário mais preciso!"
-  },
-  {
-    tema: "Preconceito Linguístico",
-    temaColor: "#880e4f",
-    pontos: 20,
-    enunciado: "Uma professora disse: <em>\"Todas as formas de falar português são válidas, mas precisamos aprender quando usar cada uma.\"</em> Essa atitude representa:",
-    opcoes: [
-      "Erro pedagógico — só a norma padrão deveria ser ensinada",
-      "Combate ao preconceito linguístico e educação sobre variação",
-      "Desrespeito às regras da gramática",
-      "Confusão sobre a língua portuguesa"
-    ],
+    enunciado: "Leia e responda: <span class='destaque'>&ldquo;A reciclagem é importante para o meio ambiente. Quando reciclamos papel, plástico, vidro e metal, reduzimos o lixo nos aterros e economizamos recursos naturais. Além disso, a reciclagem gera empregos e diminui a poluição.&rdquo;</span>Qual é o <strong>tema principal</strong> desse texto?",
+    opcoes: ["Como fazer artesanato com materiais recicláveis", "Os benefícios da reciclagem para o meio ambiente e a sociedade", "Os tipos de lixo que existem nas cidades", "Como funcionam os aterros sanitários"],
     correta: 1,
-    feedback: "✅ Excelente! Essa professora está combatendo o <strong>preconceito linguístico</strong>! Ela reconhece a validade de todas as formas de falar E ensina sobre adequação ao contexto. Perfeito!"
+    feedback: "✅ O texto fala sobre a <strong>importância e os benefícios da reciclagem</strong>: reduz lixo, economiza recursos, gera empregos e diminui poluição. Esse é o tema central desse texto informativo."
   },
   {
-    tema: "Texto Multimodal",
-    temaColor: "#e65100",
+    tema: "Leitura e Interpretação",
+    temaColor: "#006064",
     pontos: 15,
-    enunciado: "Um infográfico combina gráficos, imagens e textos explicativos. Por que ele é eficiente para comunicar informações?",
-    opcoes: [
-      "Porque usa apenas imagens",
-      "Porque combina diferentes linguagens tornando a informação mais clara",
-      "Porque tem cores bonitas",
-      "Porque ocupa menos espaço"
-    ],
+    enunciado: "Leia e responda: <span class='destaque'>&ldquo;João leu o livro três vezes antes da prova. Estudou todos os capítulos, fez resumos e respondeu exercícios. No dia da prova, ficou muito tranquilo e terminou antes do tempo.&rdquo;</span>Qual foi a <strong>causa</strong> de João ficar tranquilo na prova?",
+    opcoes: ["A prova era muito fácil", "João havia se preparado muito bem", "João copiou de um colega", "O professor cancelou a prova"],
     correta: 1,
-    feedback: "✅ Perfeito! Infográficos são <strong>textos multimodais</strong> eficientes porque combinam imagens, gráficos e textos. Cada linguagem complementa as outras, facilitando a compreensão!"
+    feedback: "✅ A relação de <strong>causa e efeito</strong> está clara: João estudou muito (causa) → ficou tranquilo e terminou cedo (efeito). Uma boa preparação traz confiança!"
   },
   {
-    tema: "Variação Regional",
+    tema: "Leitura e Interpretação",
+    temaColor: "#006064",
+    pontos: 10,
+    enunciado: "Leia o texto e identifique seu tipo: <span class='destaque'>&ldquo;Modo de preparo: Misture dois ovos com uma xícara de farinha. Adicione meia xícara de leite e uma pitada de sal. Mexa bem. Aqueça uma frigideira com manteiga e despeje a massa. Vire quando as bordas começarem a firmar.&rdquo;</span>Que tipo de texto é esse?",
+    opcoes: ["Texto narrativo (história)", "Texto poético (poema)", "Texto instrucional (receita)", "Texto argumentativo (opinião)"],
+    correta: 2,
+    feedback: "✅ Este é um <strong>texto instrucional</strong> — especificamente uma receita. Textos instrucionais ensinam como fazer algo, usando verbos no imperativo (misture, adicione, mexa) e linguagem clara e objetiva."
+  },
+  {
+    tema: "Leitura e Interpretação",
+    temaColor: "#006064",
+    pontos: 10,
+    enunciado: "Leia e responda: <span class='destaque'>&ldquo;Atenção, passageiros! O trem com destino à Estação Central partirá às 14h30 pela plataforma 3. Solicitamos que estejam na plataforma com 5 minutos de antecedência. Obrigado.&rdquo;</span>Qual é o <strong>objetivo</strong> desse texto?",
+    opcoes: ["Contar uma história sobre um trem", "Informar os passageiros sobre a partida do trem", "Convencer as pessoas a andar de trem", "Descrever como é uma estação de trem"],
+    correta: 1,
+    feedback: "✅ Esse é um <strong>aviso ou comunicado</strong>. Sua função é <strong>informar</strong> os passageiros sobre horário, destino e plataforma. Textos informativos transmitem informações de forma clara e objetiva."
+  },
+  {
+    tema: "Leitura e Interpretação",
+    temaColor: "#006064",
+    pontos: 15,
+    enunciado: "Leia e responda: <span class='destaque'>&ldquo;Mariana chegou em casa com os olhos vermelhos e os cabelos molhados de chuva. Jogou a mochila no chão e foi direto para o quarto sem falar nada. Sua mãe bateu na porta: &lsquo;Tá tudo bem?&rsquo; Mariana respondeu apenas: &lsquo;Sim.&rsquo;&rdquo;</span>O que podemos <strong>inferir</strong> sobre o estado emocional de Mariana?",
+    opcoes: ["Ela estava com muita fome", "Ela estava alegre e animada", "Ela estava chateada ou triste", "Ela estava com muito sono"],
+    correta: 2,
+    feedback: "✅ As pistas (olhos vermelhos, entrou sem falar, foi direto ao quarto) sugerem que Mariana estava <strong>triste ou chateada</strong>. <strong>Inferir</strong> é usar as pistas do texto para concluir algo que não está dito diretamente."
+  },
+  {
+    tema: "Leitura e Interpretação",
+    temaColor: "#006064",
+    pontos: 15,
+    enunciado: "Leia e responda: <span class='destaque'>&ldquo;Nas manhãs de domingo, meu avô sempre preparava um café especial. O cheiro de café fresco misturado com pão quentinho enchia toda a casa. Eu adorava sentar ao lado dele e ouvir suas histórias.&rdquo;</span>Qual sentimento o narrador expressa ao recordar essas manhãs?",
+    opcoes: ["Raiva e frustração", "Medo e angústia", "Carinho e saudade", "Tédio e indiferença"],
+    correta: 2,
+    feedback: "✅ A palavra <strong>&ldquo;adorava&rdquo;</strong> e as memórias afetivas (café especial, histórias do avô) expressam <strong>carinho e saudade</strong>. Quando o texto faz referência a boas lembranças do passado, geralmente o sentimento é de afeto e nostalgia."
+  },
+
+  // =============================================
+  // 2. SUBSTANTIVOS
+  // =============================================
+  {
+    tema: "Substantivos",
+    temaColor: "#1565c0",
+    pontos: 10,
+    enunciado: "O que é um <strong>substantivo</strong>?",
+    opcoes: ["Palavra que indica uma ação (correr, estudar)", "Palavra que nomeia pessoas, lugares, objetos, sentimentos e ideias", "Palavra que caracteriza ou qualifica outro elemento", "Palavra que liga duas orações"],
+    correta: 1,
+    feedback: "✅ O <strong>substantivo</strong> é a classe de palavras que dá nome a seres, lugares, objetos, sentimentos e ideias. Exemplos: <em>menino, cidade, cadeira, felicidade, amor</em>."
+  },
+  {
+    tema: "Substantivos",
+    temaColor: "#1565c0",
+    pontos: 10,
+    enunciado: "Qual das palavras abaixo é um substantivo <strong>próprio</strong>?",
+    opcoes: ["cachorro", "cidade", "Brasil", "felicidade"],
+    correta: 2,
+    feedback: "✅ <strong>Brasil</strong> é substantivo próprio porque é o nome específico de um país, sempre escrito com letra maiúscula. Substantivos próprios nomeiam seres de forma individual e única (Maria, Rio de Janeiro, Amazônia)."
+  },
+  {
+    tema: "Substantivos",
+    temaColor: "#1565c0",
+    pontos: 10,
+    enunciado: "Qual das palavras abaixo é um substantivo <strong>comum</strong>?",
+    opcoes: ["Pedro", "menina", "Brasília", "Nilo"],
+    correta: 1,
+    feedback: "✅ <strong>Menina</strong> é substantivo comum porque nomeia qualquer menina, sem especificar qual. Substantivos comuns nomeiam seres de forma geral, sem individualizar (mesa, livro, cachorro, cidade)."
+  },
+  {
+    tema: "Substantivos",
     temaColor: "#1565c0",
     pontos: 15,
-    enunciado: "O sotaque paulista é diferente do sotaque carioca, que é diferente do sotaque gaúcho. Essas diferenças são:",
-    opcoes: [
-      "Erros de pronúncia que deveriam ser corrigidos",
-      "Variações regionais naturais e válidas",
-      "Problemas na educação de cada região",
-      "Desvios da norma padrão"
-    ],
-    correta: 1,
-    feedback: "✅ Muito bem! Os sotaques são <strong>variações regionais</strong> naturais e fazem parte da identidade cultural de cada região. Nenhum sotaque é melhor ou mais correto que outro!"
+    enunciado: "Qual das palavras abaixo é um substantivo <strong>abstrato</strong>?",
+    opcoes: ["pedra", "árvore", "amor", "cadeira"],
+    correta: 2,
+    feedback: "✅ <strong>Amor</strong> é substantivo abstrato porque não podemos vê-lo ou tocá-lo — é um sentimento, uma ideia. Outros exemplos de abstratos: <em>felicidade, coragem, saudade, liberdade</em>."
   },
   {
-    tema: "Variação Histórica",
-    temaColor: "#4a148c",
+    tema: "Substantivos",
+    temaColor: "#1565c0",
     pontos: 15,
-    enunciado: "Nos anos 1990, ninguém usava palavras como <em>\"selfie\"</em>, <em>\"hashtag\"</em> ou <em>\"stories\"</em>. Hoje são comuns. Isso mostra que:",
-    opcoes: [
-      "A língua portuguesa está sendo destruída",
-      "A língua evolui e cria palavras para novas realidades (variação histórica)",
-      "As pessoas estão falando errado",
-      "Devíamos voltar ao português antigo"
-    ],
-    correta: 1,
-    feedback: "✅ Excelente! A <strong>variação histórica</strong> acontece quando surgem novas tecnologias e realidades sociais. A língua se adapta e cria (ou empresta) novas palavras para nomear essas novidades!"
-  },
-  {
-    tema: "Variação Social",
-    temaColor: "#bf360c",
-    pontos: 15,
-    enunciado: "Qual frase exemplifica MELHOR a variação social etária (por idade)?",
-    opcoes: [
-      "\"Que dahora, mano!\" (jovens) vs \"Que legal, rapaz!\" (mais velhos)",
-      "\"Mandioca\" vs \"Aipim\" (regional)",
-      "\"Oi\" vs \"Olá\" (situacional)",
-      "\"Carro\" vs \"Automóvel\" (histórica)"
-    ],
+    enunciado: "Assinale o grupo que contém apenas substantivos <strong>concretos</strong>:",
+    opcoes: ["mesa, livro, cachorro", "amor, saudade, paz", "felicidade, esperança, virtude", "beleza, inteligência, bondade"],
     correta: 0,
-    feedback: "✅ Perfeito! A <strong>variação social etária</strong> mostra que pessoas de diferentes idades usam palavras e expressões diferentes. Cada geração tem suas gírias e jeitos de falar!"
+    feedback: "✅ <strong>Mesa, livro e cachorro</strong> são concretos porque têm existência real — podemos vê-los e tocá-los. Já amor, saudade e paz são <strong>abstratos</strong> (sentimentos e ideias sem forma física)."
   },
   {
-    tema: "Preconceito Linguístico",
-    temaColor: "#880e4f",
+    tema: "Substantivos",
+    temaColor: "#1565c0",
+    pontos: 15,
+    enunciado: "Qual das palavras abaixo é um substantivo <strong>primitivo</strong>?",
+    opcoes: ["pedreiro", "pedrada", "pedra", "pedrão"],
+    correta: 2,
+    feedback: "✅ <strong>Pedra</strong> é o substantivo primitivo — é a palavra de origem, da qual as outras se formam: <em>pedreiro, pedrada, pedrão</em>. Substantivo primitivo é aquele que não veio de outra palavra da língua portuguesa."
+  },
+  {
+    tema: "Substantivos",
+    temaColor: "#1565c0",
+    pontos: 15,
+    enunciado: "Qual das palavras abaixo é um substantivo <strong>derivado</strong>?",
+    opcoes: ["flor", "terra", "florista", "pedra"],
+    correta: 2,
+    feedback: "✅ <strong>Florista</strong> é derivado porque veio da palavra <em>flor</em> (primitivo) com o acréscimo do sufixo <em>-ista</em>. Substantivos derivados se formam a partir de outros: terra &rarr; terreiro, livro &rarr; livraria."
+  },
+  {
+    tema: "Substantivos",
+    temaColor: "#1565c0",
+    pontos: 10,
+    enunciado: "Na frase <em>&ldquo;A criança brinca no jardim&rdquo;</em>, quais são os <strong>substantivos</strong>?",
+    opcoes: ["A (artigo) e brinca (verbo)", "brinca e no", "criança e jardim", "A e no"],
+    correta: 2,
+    feedback: "✅ <strong>Criança</strong> e <strong>jardim</strong> são os substantivos da frase — nomeiam seres. &ldquo;A&rdquo; é artigo, &ldquo;brinca&rdquo; é verbo e &ldquo;no&rdquo; é preposição + artigo. Uma frase pode ter mais de um substantivo!"
+  },
+  {
+    tema: "Substantivos",
+    temaColor: "#1565c0",
     pontos: 20,
-    enunciado: "Qual frase representa preconceito linguístico?",
-    opcoes: [
-      "\"Na redação, use a norma padrão\"",
-      "\"Ele fala errado porque é do interior\"",
-      "\"Cada região tem seu jeito de falar\"",
-      "\"Podemos usar gírias com amigos\""
-    ],
+    enunciado: "Classifique o substantivo <strong>&ldquo;dor&rdquo;</strong> na frase: <em>&ldquo;Ela sentiu uma dor forte.&rdquo;</em>",
+    opcoes: ["Concreto e primitivo", "Abstrato e primitivo", "Concreto e derivado", "Abstrato e derivado"],
     correta: 1,
-    feedback: "✅ Correto! Dizer que alguém \"fala errado\" por causa de sua origem é <strong>preconceito linguístico</strong>. Todas as variedades regionais são legítimas e não há \"certo\" ou \"errado\" nisso!"
+    feedback: "✅ <strong>Dor</strong> é <strong>abstrato</strong> (é uma sensação, não podemos ver ou tocar) e <strong>primitivo</strong> (não veio de outra palavra; dela derivam: doer, doído, doloroso)."
+  },
+  {
+    tema: "Substantivos",
+    temaColor: "#1565c0",
+    pontos: 20,
+    enunciado: "Qual grupo contém apenas substantivos <strong>simples</strong> (formados por um único radical)?",
+    opcoes: ["passatempo, girassol, aguardente", "casa, mar, livro", "guarda-chuva, couve-flor, beija-flor", "amor-perfeito, bem-te-vi, beija-flor"],
+    correta: 1,
+    feedback: "✅ <strong>Casa, mar e livro</strong> são simples — cada um tem apenas um radical. Os outros grupos têm substantivos <strong>compostos</strong>, formados por dois ou mais radicais unidos (guarda+chuva, passa+tempo)."
+  },
+
+  // =============================================
+  // 3. SUBSTANTIVOS COLETIVOS
+  // =============================================
+  {
+    tema: "Substantivos Coletivos",
+    temaColor: "#2e7d32",
+    pontos: 10,
+    enunciado: "Como chamamos o grupo de <strong>peixes</strong> que nada junto no mar ou nos rios?",
+    opcoes: ["Alcateia", "Cardume", "Matilha", "Enxame"],
+    correta: 1,
+    feedback: "✅ <strong>Cardume</strong> é o substantivo coletivo de peixes. Substantivos coletivos são palavras que, no singular, já indicam um conjunto de seres da mesma espécie."
+  },
+  {
+    tema: "Substantivos Coletivos",
+    temaColor: "#2e7d32",
+    pontos: 10,
+    enunciado: "Qual é o substantivo coletivo de <strong>abelhas</strong>?",
+    opcoes: ["Bando", "Manada", "Enxame", "Alcateia"],
+    correta: 2,
+    feedback: "✅ <strong>Enxame</strong> é o coletivo de abelhas (e de outros insetos). Quando vemos muitas abelhas voando juntas, dizemos que há um <em>enxame</em>!"
+  },
+  {
+    tema: "Substantivos Coletivos",
+    temaColor: "#2e7d32",
+    pontos: 10,
+    enunciado: "Como se chama um grupo de <strong>lobos</strong>?",
+    opcoes: ["Cardume", "Alcateia", "Rebanho", "Matilha"],
+    correta: 1,
+    feedback: "✅ <strong>Alcateia</strong> é o coletivo de lobos. Cuidado para não confundir: <em>matilha</em> é o coletivo de cães de caça, e <em>rebanho</em> é o de ovelhas."
+  },
+  {
+    tema: "Substantivos Coletivos",
+    temaColor: "#2e7d32",
+    pontos: 10,
+    enunciado: "Qual palavra designa um conjunto de <strong>livros</strong> reunidos?",
+    opcoes: ["Galeria", "Acervo", "Biblioteca", "Coleção"],
+    correta: 2,
+    feedback: "✅ <strong>Biblioteca</strong> é o coletivo de livros! Além de nomear o local onde ficam, é o coletivo clássico usado para indicar um conjunto de livros reunidos."
+  },
+  {
+    tema: "Substantivos Coletivos",
+    temaColor: "#2e7d32",
+    pontos: 10,
+    enunciado: "&ldquo;Um ___ de flores enfeitava a mesa de jantar.&rdquo; Qual coletivo completa corretamente?",
+    opcoes: ["frota", "buquê (ou ramalhete)", "bando", "rebanho"],
+    correta: 1,
+    feedback: "✅ <strong>Buquê</strong> (também chamado de <strong>ramalhete</strong>) é o coletivo de flores. <em>Frota</em> é de navios, <em>bando</em> é de pássaros e <em>rebanho</em> é de ovelhas."
+  },
+  {
+    tema: "Substantivos Coletivos",
+    temaColor: "#2e7d32",
+    pontos: 10,
+    enunciado: "Qual é o substantivo coletivo de <strong>ovelhas</strong>?",
+    opcoes: ["Matilha", "Cardume", "Rebanho", "Alcateia"],
+    correta: 2,
+    feedback: "✅ <strong>Rebanho</strong> é o coletivo de ovelhas (e também de cabras e bovinos). <em>Manada</em> é usada para animais de grande porte, como elefantes e búfalos."
+  },
+  {
+    tema: "Substantivos Coletivos",
+    temaColor: "#2e7d32",
+    pontos: 15,
+    enunciado: "O coletivo de <strong>navios</strong> é:",
+    opcoes: ["Esquadra ou frota", "Bando", "Enxame", "Cardume"],
+    correta: 0,
+    feedback: "✅ <strong>Esquadra</strong> ou <strong>frota</strong> são os coletivos de navios. A palavra <em>frota</em> também é usada para veículos terrestres (uma frota de ônibus, de caminhões)."
+  },
+  {
+    tema: "Substantivos Coletivos",
+    temaColor: "#2e7d32",
+    pontos: 15,
+    enunciado: "Em qual frase o coletivo está usado <strong>incorretamente</strong>?",
+    opcoes: ["O cardume de peixes passou rapidinho.", "O enxame de abelhas estava agitado.", "A alcateia de pássaros voou alto.", "O rebanho de ovelhas pastava no campo."],
+    correta: 2,
+    feedback: "✅ <strong>Alcateia</strong> é o coletivo de <em>lobos</em>, não de pássaros! O correto para pássaros é <strong>bando</strong> ou <strong>revoada</strong>. Revoada indica especialmente o ato de pássaros voando juntos."
+  },
+  {
+    tema: "Substantivos Coletivos",
+    temaColor: "#2e7d32",
+    pontos: 15,
+    enunciado: "Qual é o coletivo de <strong>ilhas</strong>?",
+    opcoes: ["Arquipélago", "Bando", "Matilha", "Enxame"],
+    correta: 0,
+    feedback: "✅ <strong>Arquipélago</strong> é o coletivo de ilhas. Exemplos famosos: o arquipélago de Fernando de Noronha (Brasil) e o arquipélago das Ilhas Galápagos (Equador)."
+  },
+  {
+    tema: "Substantivos Coletivos",
+    temaColor: "#2e7d32",
+    pontos: 15,
+    enunciado: "Como se chama o grupo de <strong>atletas</strong> que representa um país em uma competição esportiva?",
+    opcoes: ["Bando", "Matilha", "Delegação", "Frota"],
+    correta: 2,
+    feedback: "✅ <strong>Delegação</strong> é o coletivo de atletas (ou representantes) em competições. Por exemplo: &ldquo;A delegação brasileira chegou à Olimpíada com mais de 300 atletas.&rdquo;"
+  },
+
+  // =============================================
+  // 4. ENCONTRO VOCÁLICO
+  // =============================================
+  {
+    tema: "Encontro Vocálico",
+    temaColor: "#6a1b9a",
+    pontos: 10,
+    enunciado: "O que é um <strong>ditongo</strong>?",
+    opcoes: ["Encontro de duas consoantes na mesma sílaba", "Encontro de duas vogais em sílabas diferentes", "Encontro de vogal + semivogal (ou semivogal + vogal) na mesma sílaba", "Separação de vogais em sílabas distintas"],
+    correta: 2,
+    feedback: "✅ <strong>Ditongo</strong> é o encontro de uma vogal + semivogal na MESMA sílaba. Exemplos: <em>cai-xa</em> (ai), <em>pei-xe</em> (ei), <em>au-to</em> (au). As duas letras ficam juntas na mesma sílaba!"
+  },
+  {
+    tema: "Encontro Vocálico",
+    temaColor: "#6a1b9a",
+    pontos: 10,
+    enunciado: "O que é um <strong>hiato</strong>?",
+    opcoes: ["Encontro de vogal e semivogal na mesma sílaba", "Encontro de três vogais na mesma sílaba", "Encontro de duas vogais em sílabas separadas", "Uma consoante entre duas vogais"],
+    correta: 2,
+    feedback: "✅ <strong>Hiato</strong> é quando duas vogais ficam em SÍLABAS DIFERENTES. Exemplos: <em>sa-í-da</em> (a/í), <em>sa-ú-de</em> (a/ú), <em>po-e-ma</em> (o/e). Cada vogal fica na sua própria sílaba!"
+  },
+  {
+    tema: "Encontro Vocálico",
+    temaColor: "#6a1b9a",
+    pontos: 10,
+    enunciado: "O que é um <strong>tritongo</strong>?",
+    opcoes: ["Encontro de três consoantes", "Encontro de semivogal + vogal + semivogal na mesma sílaba", "Encontro de vogal + consoante + vogal", "Uma palavra com três sílabas"],
+    correta: 1,
+    feedback: "✅ <strong>Tritongo</strong> é o encontro de semivogal + vogal + semivogal na MESMA sílaba. Exemplos: U-ru-<em>guai</em> (uai), Pa-ra-<em>guai</em> (uai), en-xá-<em>guei</em> (uei). São raros em português!"
+  },
+  {
+    tema: "Encontro Vocálico",
+    temaColor: "#6a1b9a",
+    pontos: 10,
+    enunciado: "A palavra <strong>&ldquo;PAI&rdquo;</strong> apresenta qual encontro vocálico?",
+    opcoes: ["Hiato", "Tritongo", "Ditongo", "Não há encontro vocálico"],
+    correta: 2,
+    feedback: "✅ Em <strong>pai</strong>, as letras &ldquo;ai&rdquo; formam um <strong>ditongo</strong> — vogal &ldquo;a&rdquo; + semivogal &ldquo;i&rdquo; na mesma sílaba. &ldquo;Pai&rdquo; tem apenas uma sílaba, e as duas vogais ficam juntas nela."
+  },
+  {
+    tema: "Encontro Vocálico",
+    temaColor: "#6a1b9a",
+    pontos: 15,
+    enunciado: "Em qual das palavras abaixo há <strong>hiato</strong>?",
+    opcoes: ["peixe", "saúde", "caixa", "ouro"],
+    correta: 1,
+    feedback: "✅ Em <strong>sa-ú-de</strong>, temos hiato: o &ldquo;a&rdquo; e o &ldquo;ú&rdquo; ficam em sílabas SEPARADAS (sa | ú | de). Já em <em>peixe</em> (pei-xe), <em>caixa</em> (cai-xa) e <em>ouro</em> (ou-ro), as vogais ficam juntas — são ditongos!"
+  },
+  {
+    tema: "Encontro Vocálico",
+    temaColor: "#6a1b9a",
+    pontos: 15,
+    enunciado: "A última sílaba da palavra <strong>&ldquo;PARAGUAI&rdquo;</strong> (<em>guai</em>) apresenta:",
+    opcoes: ["Hiato", "Ditongo", "Tritongo", "Encontro consonantal"],
+    correta: 2,
+    feedback: "✅ <strong>guai</strong> é um tritongo: semivogal &ldquo;u&rdquo; + vogal &ldquo;a&rdquo; + semivogal &ldquo;i&rdquo;, todos na mesma sílaba. Tritongos são comuns em nomes terminados em <em>-uai</em> e <em>-uei</em>."
+  },
+  {
+    tema: "Encontro Vocálico",
+    temaColor: "#6a1b9a",
+    pontos: 15,
+    enunciado: "Em <strong>&ldquo;quase&rdquo;</strong> (qua-se), qual encontro vocálico aparece na sílaba <em>qua</em>?",
+    opcoes: ["Hiato (vogais em sílabas separadas)", "Ditongo crescente (semivogal + vogal)", "Ditongo decrescente (vogal + semivogal)", "Tritongo"],
+    correta: 1,
+    feedback: "✅ Em <strong>qua-se</strong>, temos &ldquo;ua&rdquo; = semivogal &ldquo;u&rdquo; + vogal &ldquo;a&rdquo; = <strong>ditongo crescente</strong>. No ditongo <em>decrescente</em>, a vogal vem antes: <em>pai</em> (a+i = vogal + semivogal)."
+  },
+  {
+    tema: "Encontro Vocálico",
+    temaColor: "#6a1b9a",
+    pontos: 15,
+    enunciado: "Onde está o <strong>hiato</strong> na palavra <strong>&ldquo;POESIA&rdquo;</strong> (po-e-si-a)?",
+    opcoes: ["Entre &ldquo;po&rdquo; e &ldquo;e&rdquo; — o &ldquo;o&rdquo; e o &ldquo;e&rdquo; ficam em sílabas separadas", "Entre &ldquo;si&rdquo; e &ldquo;a&rdquo; — encontro na mesma sílaba", "Em &ldquo;po&rdquo; — vogal isolada", "Não há hiato nessa palavra"],
+    correta: 0,
+    feedback: "✅ Em <strong>po-e-si-a</strong>, separamos &ldquo;po&rdquo; e &ldquo;e&rdquo; em sílabas distintas — isso é <strong>hiato</strong>. As vogais &ldquo;o&rdquo; e &ldquo;e&rdquo; ficam em sílabas separadas, cada uma com seu próprio som."
+  },
+  {
+    tema: "Encontro Vocálico",
+    temaColor: "#6a1b9a",
+    pontos: 15,
+    enunciado: "Em qual palavra <strong>NÃO</strong> há encontro vocálico?",
+    opcoes: ["saída", "leite", "livro", "céu"],
+    correta: 2,
+    feedback: "✅ Em <strong>livro</strong> (li-vro), o &ldquo;i&rdquo; e o &ldquo;o&rdquo; não ficam juntos — a consoante &ldquo;vr&rdquo; os separa. Já em <em>saída</em> há hiato (sa-í-da), em <em>leite</em> há ditongo (lei-te) e em <em>céu</em> há ditongo (éu)."
+  },
+  {
+    tema: "Encontro Vocálico",
+    temaColor: "#6a1b9a",
+    pontos: 20,
+    enunciado: "Classifique o encontro vocálico na palavra <strong>&ldquo;NAVIO&rdquo;</strong> (na-vi-o):",
+    opcoes: ["Ditongo — o &ldquo;io&rdquo; fica na mesma sílaba", "Tritongo em &ldquo;avio&rdquo;", "Hiato — o &ldquo;i&rdquo; e o &ldquo;o&rdquo; ficam em sílabas diferentes", "Não há encontro vocálico"],
+    correta: 2,
+    feedback: "✅ Em <strong>na-vi-o</strong>, as vogais &ldquo;i&rdquo; e &ldquo;o&rdquo; ficam em sílabas diferentes, formando um <strong>hiato</strong>. A divisão correta é na | vi | o (3 sílabas). Não há ditongo nem tritongo nessa palavra."
+  },
+
+  // =============================================
+  // 5. SEPARAÇÃO SILÁBICA
+  // =============================================
+  {
+    tema: "Separação Silábica",
+    temaColor: "#e65100",
+    pontos: 10,
+    enunciado: "Como se divide corretamente a palavra <strong>&ldquo;ESCOLA&rdquo;</strong>?",
+    opcoes: ["esco-la", "es-co-la", "e-sco-la", "es-col-a"],
+    correta: 1,
+    feedback: "✅ <strong>Es-co-la</strong> tem 3 sílabas. A regra geral é que cada sílaba deve ter pelo menos uma vogal. O &ldquo;s&rdquo; e o &ldquo;c&rdquo; ficam em sílabas diferentes porque não formam dígrafo."
+  },
+  {
+    tema: "Separação Silábica",
+    temaColor: "#e65100",
+    pontos: 10,
+    enunciado: "Qual é a divisão silábica correta de <strong>&ldquo;CARRO&rdquo;</strong>?",
+    opcoes: ["ca-r-ro", "car-ro", "c-ar-ro", "ca-rro"],
+    correta: 1,
+    feedback: "✅ <strong>Car-ro</strong>. O dígrafo &ldquo;rr&rdquo; NUNCA se separa — as duas letras ficam juntas na mesma sílaba. O mesmo vale para &ldquo;ss&rdquo;, &ldquo;lh&rdquo;, &ldquo;nh&rdquo;, &ldquo;ch&rdquo;: dígrafos são inseparáveis!"
+  },
+  {
+    tema: "Separação Silábica",
+    temaColor: "#e65100",
+    pontos: 15,
+    enunciado: "Como se divide a palavra <strong>&ldquo;SAÍDA&rdquo;</strong>?",
+    opcoes: ["saí-da", "sa-i-da", "sa-í-da", "s-a-í-d-a"],
+    correta: 2,
+    feedback: "✅ <strong>Sa-í-da</strong> (3 sílabas). No hiato, cada vogal fica em sua própria sílaba. Quando há hiato, as vogais <strong>sempre se separam</strong> na divisão silábica!"
+  },
+  {
+    tema: "Separação Silábica",
+    temaColor: "#e65100",
+    pontos: 15,
+    enunciado: "Como se divide corretamente a palavra <strong>&ldquo;CACHORRO&rdquo;</strong>?",
+    opcoes: ["ca-cho-rro", "cach-or-ro", "ca-chor-ro", "ca-ch-or-ro"],
+    correta: 0,
+    feedback: "✅ <strong>Ca-cho-rro</strong>. &ldquo;Ch&rdquo; é dígrafo (inseparável) e &ldquo;rr&rdquo; também é dígrafo (inseparável) — ficam juntos: ca | cho | rro. Dígrafos nunca se separam!"
+  },
+  {
+    tema: "Separação Silábica",
+    temaColor: "#e65100",
+    pontos: 10,
+    enunciado: "Quantas sílabas tem a palavra <strong>&ldquo;MARAVILHOSO&rdquo;</strong>?",
+    opcoes: ["4 sílabas", "5 sílabas", "6 sílabas", "3 sílabas"],
+    correta: 1,
+    feedback: "✅ <strong>Ma-ra-vi-lho-so</strong> = 5 sílabas! O dígrafo &ldquo;lh&rdquo; fica junto. Dica: conte batendo palmas: ma (1) – ra (2) – vi (3) – lho (4) – so (5) = 5!"
+  },
+  {
+    tema: "Separação Silábica",
+    temaColor: "#e65100",
+    pontos: 15,
+    enunciado: "Como se divide a palavra <strong>&ldquo;TRANSPORTE&rdquo;</strong>?",
+    opcoes: ["trans-por-te", "tran-spor-te", "t-rans-por-te", "trans-p-or-te"],
+    correta: 0,
+    feedback: "✅ <strong>Trans-por-te</strong> (3 sílabas). Quando há consoantes juntas entre vogais, a primeira geralmente fica com a sílaba anterior (&ldquo;ns&rdquo; em &ldquo;trans&rdquo;). O &ldquo;p&rdquo; inicia a próxima sílaba (&ldquo;por&rdquo;)."
+  },
+  {
+    tema: "Separação Silábica",
+    temaColor: "#e65100",
+    pontos: 10,
+    enunciado: "Qual das divisões abaixo está <strong>INCORRETA</strong>?",
+    opcoes: ["ca-sa", "me-ni-na", "carr-o", "li-vro"],
+    correta: 2,
+    feedback: "✅ <strong>Carr-o</strong> está errado! O dígrafo &ldquo;rr&rdquo; não pode ser separado — o correto é <strong>car-ro</strong>. Sempre que aparecer &ldquo;rr&rdquo;, &ldquo;ss&rdquo;, &ldquo;lh&rdquo;, &ldquo;nh&rdquo; ou &ldquo;ch&rdquo;, as duas letras ficam juntas na mesma sílaba."
+  },
+  {
+    tema: "Separação Silábica",
+    temaColor: "#e65100",
+    pontos: 15,
+    enunciado: "Qual é a divisão correta de <strong>&ldquo;APRESENTAÇÃO&rdquo;</strong>?",
+    opcoes: ["a-pre-sen-ta-ção", "apr-esen-ta-ção", "a-pres-en-ta-ção", "apre-sen-ta-ção"],
+    correta: 0,
+    feedback: "✅ <strong>A-pre-sen-ta-ção</strong> = 5 sílabas. O encontro consonantal &ldquo;pr&rdquo; inicia sílaba e fica junto (&ldquo;pre&rdquo;). Fale pausadamente: a | pre | sen | ta | ção — cada pausa é uma sílaba!"
+  },
+  {
+    tema: "Separação Silábica",
+    temaColor: "#e65100",
+    pontos: 20,
+    enunciado: "A palavra <strong>&ldquo;GUERRA&rdquo;</strong> se divide em:",
+    opcoes: ["gu-er-ra", "guer-ra", "g-uer-ra", "gue-r-ra"],
+    correta: 1,
+    feedback: "✅ <strong>Guer-ra</strong> (2 sílabas). &ldquo;Gu&rdquo; antes de &ldquo;e&rdquo; ou &ldquo;i&rdquo; forma dígrafo (o &ldquo;u&rdquo; não tem som), ficando junto: <em>guer</em>. E &ldquo;rr&rdquo; também é dígrafo: <em>ra</em>. Resultado: guer-ra."
+  },
+  {
+    tema: "Separação Silábica",
+    temaColor: "#e65100",
+    pontos: 20,
+    enunciado: "Qual palavra tem <strong>hiato</strong> que se separa na divisão silábica?",
+    opcoes: ["leite &rarr; lei-te", "caixa &rarr; cai-xa", "rainha &rarr; rai-nha", "poesia &rarr; po-e-si-a"],
+    correta: 3,
+    feedback: "✅ Em <strong>po-e-si-a</strong> (4 sílabas), as vogais &ldquo;o&rdquo; e &ldquo;e&rdquo; formam hiato e ficam em sílabas separadas. Nas outras palavras, &ldquo;ai&rdquo; e &ldquo;ei&rdquo; são <strong>ditongos</strong> — ficam juntos na mesma sílaba e não se separam."
   }
 ];
 
