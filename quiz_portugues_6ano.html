@@ -342,9 +342,27 @@
   .feedback.nok { background: #ffebee; color: var(--vermelho); border: 2px solid #ef9a9a; }
   .feedback-icon { font-size: 1.4rem; flex-shrink: 0; }
 
-  .btn-proximo {
-    display: block;
+  .btn-nav-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
     margin: 1.2rem auto 0;
+  }
+  .btn-voltar {
+    padding: 0.8rem 1.6rem;
+    border-radius: 100px;
+    border: 2.5px solid #1a73e8;
+    background: white;
+    color: #1a73e8;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: none;
+  }
+  .btn-voltar:hover { background: #e8f0fe; transform: translateY(-2px); }
+  .btn-voltar.show { display: block; }
+  .btn-proximo {
     padding: 0.8rem 2.2rem;
     border-radius: 100px;
     border: none;
@@ -494,7 +512,10 @@
       <span class="feedback-icon" id="feedbackIcon"></span>
       <span id="feedbackTexto"></span>
     </div>
-    <button class="btn-proximo" id="btnProximo" onclick="proximaPergunta()">Próxima →</button>
+    <div class="btn-nav-row">
+      <button class="btn-voltar" id="btnVoltar" onclick="voltarPergunta()">← Anterior</button>
+      <button class="btn-proximo" id="btnProximo" onclick="proximaPergunta()">Próxima →</button>
+    </div>
   </div>
   <div class="resultado" id="resultado">
     <h2>Quiz Concluído! 🎉</h2>
@@ -987,7 +1008,7 @@ const perguntas = [
 ];
 
 const temas = [...new Set(perguntas.map(p => p.tema))];
-let atual = 0, pontos = 0, acertos = 0, erros = 0, respondeu = false;
+let atual = 0, pontos = 0, acertos = 0, erros = 0, respondeu = false, historico = {};
 
 function init() {
   // Renderiza badges de temas
@@ -1031,6 +1052,26 @@ function renderPergunta() {
 
   document.getElementById('feedback').className = 'feedback';
   document.getElementById('btnProximo').className = 'btn-proximo';
+  document.getElementById('btnVoltar').className = atual > 0 ? 'btn-voltar show' : 'btn-voltar';
+
+  const h = historico[atual];
+  if (h) {
+    respondeu = true;
+    const bots = document.querySelectorAll('.opcao-btn');
+    bots.forEach(b => b.disabled = true);
+    bots[h.selecionado].classList.add(h.foiCerto ? 'correta' : 'errada');
+    if (!h.foiCerto) bots[p.correta].classList.add('correta');
+    const fb = document.getElementById('feedback');
+    const fi = document.getElementById('feedbackIcon');
+    const ft = document.getElementById('feedbackTexto');
+    if (h.foiCerto) {
+      fb.className = 'feedback show ok'; fi.textContent = '🎉'; ft.innerHTML = p.feedback;
+    } else {
+      fb.className = 'feedback show nok'; fi.textContent = '💡';
+      ft.innerHTML = '❌ Ops! A resposta correta é a <strong>' + ['A','B','C','D'][p.correta] + '</strong>. <br>' + p.feedback.replace('✅','📖');
+    }
+    document.getElementById('btnProximo').className = 'btn-proximo show';
+  }
 
   // Barra de progresso
   const pct = Math.round((atual / perguntas.length) * 100);
@@ -1067,6 +1108,7 @@ function responder(idx) {
     ft.innerHTML = `❌ Ops! A resposta correta é a <strong>${['A','B','C','D'][p.correta]}</strong>. <br>${p.feedback.replace('✅','📖')}`;
   }
 
+  historico[atual] = { selecionado: idx, foiCerto: idx === p.correta };
   document.getElementById('totalPontos').textContent = pontos;
   document.getElementById('totalAcertos').textContent = acertos;
   document.getElementById('totalErros').textContent = erros;
@@ -1103,6 +1145,16 @@ function getMensagem(pts) {
   return 'Não desanime! Releia o material e tente de novo. Estudar é praticar! 📚';
 }
 
+function voltarPergunta() {
+  if (atual === 0) return;
+  atual--;
+  document.getElementById('cartao').style.animation = 'none';
+  setTimeout(() => {
+    document.getElementById('cartao').style.animation = 'slideIn 0.4s ease';
+    renderPergunta();
+  }, 50);
+}
+
 function proximaPergunta() {
   atual++;
   if (atual >= perguntas.length) { mostrarResultado(); return; }
@@ -1134,7 +1186,7 @@ function mostrarResultado() {
 }
 
 function reiniciar() {
-  atual = 0; pontos = 0; acertos = 0; erros = 0;
+  atual = 0; pontos = 0; acertos = 0; erros = 0; historico = {};
   document.getElementById('totalPontos').textContent = 0;
   document.getElementById('totalAcertos').textContent = 0;
   document.getElementById('totalErros').textContent = 0;
